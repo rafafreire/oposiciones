@@ -49,3 +49,4 @@
 .topic-questions-button{flex:none;border:1px solid #dce8da;background:#f6faf5;color:#286342;border-radius:999px;padding:8px 12px;font:650 12px system-ui;cursor:pointer;white-space:nowrap}.topic-questions-button:hover{background:#eaf3e8}.topic-questions-button:focus-visible{outline:3px solid #94bd91;outline-offset:2px}@media(max-width:600px){.topic-card .topic-questions-button{grid-column:2;justify-self:start;margin:3px 0 0;padding:8px 12px;font-size:11px}}
 
 .study-reference{margin-top:12px;padding:10px 12px;border-left:3px solid #78a47b;border-radius:5px;background:#f1f6ef;color:#405943;font-size:12px}.study-reference strong{display:block;margin-bottom:3px;color:#286342;font-size:10px;text-transform:uppercase;letter-spacing:.45px}
+

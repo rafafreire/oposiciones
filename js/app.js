@@ -87,6 +87,46 @@ document.addEventListener('click', event => {
 });
 
 
+window.getStudyArticleText = function(topicNumber, reference) {
+  const encoded = window.topicMaterialB64?.[topicNumber];
+  if (!encoded) return '';
+  const bytes = Uint8Array.from(atob(encoded), character => character.charCodeAt(0));
+  const markdown = new TextDecoder('utf-8').decode(bytes);
+  const citation = String(reference || '');
+  const articleMatch = citation.match(/art.{0,2}(\d+(?:\.\d+)*)/i);
+  if (!articleMatch) return '';
+  const lawName = citation.slice(0, articleMatch.index).replace(/[,;\s]+$/, '');
+  const normalize = value => String(value || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const sections = markdown.split(/(?=^##\s+)/m);
+  const lawNumber = lawName.match(/\d{1,4}\/\d{4}/);
+  const normalizedLaw = normalize(lawName);
+  let section = sections.find(part => {
+    const heading = (part.match(/^##\s+(.+)$/m) || [,''])[1];
+    const normalizedHeading = normalize(heading);
+    if (lawNumber) return heading.includes(lawNumber[0]);
+    if (normalizedLaw.includes('constituci')) return normalizedHeading.includes('constituci');
+    if (normalizedLaw.includes('estatuto') || normalizedLaw.includes('estatut')) return normalizedHeading.includes('estatut') || normalizedHeading.includes('autonomia');
+    if (normalizedLaw.includes('tfue')) return normalizedHeading.includes('funcionamiento') || normalizedHeading.includes('tfue');
+    if (normalizedLaw.includes('tue')) return normalizedHeading.includes('union europea') || normalizedHeading.includes('tue');
+    return normalizedHeading.includes(normalizedLaw.slice(0, 24));
+  });
+  if (!section) return '';
+  const lines = section.split(/\r?\n/);
+  const target = articleMatch[1].replace(/\s/g, '');
+  const start = lines.findIndex(line => {
+    const match = line.match(/^###\s+Art.{0,3}culo\s+(\d+(?:\.\d+)*)/i);
+    return match && match[1] === target;
+  });
+  if (start < 0) return '';
+  let end = lines.findIndex((line, index) => index > start && (/^###\s+Art.{0,3}culo\s+\d+/i.test(line) || /^##\s+/.test(line)));
+  if (end < 0) end = lines.length;
+  return lines.slice(start, end).join('\n')
+    .replace(/^###\s+Art.{0,3}culo\s+\d+(?:\.\d+)*\s*$/im, '')
+    .replace(/\[\[HIGHLIGHT\]\]|\[\[\/HIGHLIGHT\]\]/g, '')
+    .replace(/\[\[EXAM-REF:[^\]]+\]\]/g, '')
+    .trim();
+};
+
 function openTopicQuestions(number) {
   const popup = window.open('', '_blank');
   if (!popup) return;
@@ -95,7 +135,7 @@ function openTopicQuestions(number) {
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   popup.document.open();
   popup.document.write(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Preguntas &#183; Tema ${String(number).padStart(2,'0')}</title><style>
-    *{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#263328;font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}.bar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5ebe3;padding:12px max(18px,calc((100vw - 900px)/2));display:flex;justify-content:space-between;align-items:center;color:#55705a;font-size:12px}.bar button{border:1px solid #dce8da;background:#f5f8f3;color:#286342;border-radius:7px;padding:8px 11px;font-weight:600;cursor:pointer}main{max-width:900px;margin:30px auto;padding:0 18px 50px}.eyebrow{color:#718071;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}h1{font-size:30px;line-height:1.2;margin:6px 0}header p:last-child{color:#718071}.question{background:#fff;border:1px solid #e5ebe3;border-radius:12px;padding:20px;margin:12px 0}.meta{font-size:10px;color:#718071;letter-spacing:.5px}.question h2{font-size:16px;line-height:1.5;margin:10px 0 14px}.options{list-style:none;padding:0;margin:0;display:grid;gap:7px}.options li{padding:10px 12px;border:1px solid #e7ebe4;border-radius:8px}.letter{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:7px;border-radius:6px;background:#f0f5ee;color:#34764d;font-weight:700;font-size:11px}.answer{margin-top:12px;border-top:1px solid #eff1ec;padding-top:10px}.answer summary{cursor:pointer;color:#286342;font-size:12px;font-weight:700}.answer p{font-size:13px;color:#566256}.empty{padding:16px;background:#fff5ee;border-radius:9px;color:#805b34}@media(max-width:600px){main{margin:20px auto;padding:0 12px 35px}h1{font-size:24px}.question{padding:15px}}
+    *{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#263328;font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}.bar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5ebe3;padding:12px max(18px,calc((100vw - 900px)/2));display:flex;justify-content:space-between;align-items:center;color:#55705a;font-size:12px}.bar button{border:1px solid #dce8da;background:#f5f8f3;color:#286342;border-radius:7px;padding:8px 11px;font-weight:600;cursor:pointer}main{max-width:900px;margin:30px auto;padding:0 18px 50px}.eyebrow{color:#718071;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}h1{font-size:30px;line-height:1.2;margin:6px 0}header p:last-child{color:#718071}.question{background:#fff;border:1px solid #e5ebe3;border-radius:12px;padding:20px;margin:12px 0}.meta{font-size:10px;color:#718071;letter-spacing:.5px}.question h2{font-size:16px;line-height:1.5;margin:10px 0 14px}.options{list-style:none;padding:0;margin:0;display:grid;gap:7px}.options li{padding:10px 12px;border:1px solid #e7ebe4;border-radius:8px}.letter{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:7px;border-radius:6px;background:#f0f5ee;color:#34764d;font-weight:700;font-size:11px}.answer{margin-top:12px;border-top:1px solid #eff1ec;padding-top:10px}.answer summary{cursor:pointer;color:#286342;font-size:12px;font-weight:700}.answer p{font-size:13px;color:#566256}.empty{padding:16px;background:#fff5ee;border-radius:9px;color:#805b34}.study-reference{display:block;width:100%;margin-top:12px;padding:10px 12px;border:1px solid #dce8da;border-left:3px solid #78a47b;border-radius:7px;background:#f1f6ef;color:#405943;text-align:left;font:inherit;cursor:help}.study-reference strong{display:block;color:#286342;font-size:10px;text-transform:uppercase;letter-spacing:.45px}.study-reference small{display:block;margin-top:4px;color:#708572;font-size:10px}.study-reference:hover{background:#e9f2e8}.article-tooltip{position:fixed;z-index:20;max-width:calc(100vw - 24px);max-height:min(60vh,520px);overflow:auto;padding:14px 16px;border:1px solid #cbdcc9;border-radius:10px;background:#fff;box-shadow:0 10px 32px #2633282b;color:#334336;font-size:13px;line-height:1.65}.article-tooltip[hidden]{display:none}.article-tooltip>strong{display:block;margin-bottom:8px;color:#286342;font-size:12px}.article-tooltip p{margin:7px 0}@media(max-width:600px){main{margin:20px auto;padding:0 12px 35px}h1{font-size:24px}.question{padding:15px}}
   </style></head><body><div class="bar"><span>OpoGVA &#183; Preguntas del temario</span><button onclick="if(window.opener&&!window.opener.closed){window.opener.focus();window.close()}else{window.close()}">Volver al temario</button></div><main><header><p class="eyebrow">${topic ? escape(topic.b === 'general' ? 'Parte general' : 'Parte especial') + ' \u00B7 ' : ''}Tema ${String(number).padStart(2,'0')}</p><h1>${escape(topic?.title || `Tema ${number}`)}</h1><p id="status">Cargando preguntas...</p></header><div id="questions"></div></main></body></html>`);
   popup.document.close();
 
@@ -116,9 +156,61 @@ function openTopicQuestions(number) {
         const options = Object.entries(question.opciones || {}).map(([letter, text]) => `<li><span class="letter">${escape(letter.toUpperCase())}</span>${escape(text)}</li>`).join('');
         const answer = escape(question.respuesta_correcta || 'Sin respuesta');
         const explanation = question.explicacion ? `<p>${escape(question.explicacion)}</p>` : '';
-        const reference = question.referencia_tematica ? `<div class="study-reference"><strong>${question.referencia_tematica_tipo === 'articulo' ? 'Art\u00EDculo para estudiar:' : 'Apartado para estudiar:'}</strong> ${escape(question.referencia_tematica)}</div>` : '';
+        const reference = question.referencia_tematica ? (question.referencia_tematica_tipo === 'articulo'
+          ? `<button type="button" class="study-reference" data-study-article="${number}" data-reference="${escape(question.referencia_tematica)}" aria-haspopup="true"><strong>Art\u00EDculo para estudiar:</strong> ${escape(question.referencia_tematica)}<small>Pasa el cursor para leerlo</small></button>`
+          : `<div class="study-reference"><strong>Apartado para estudiar:</strong> ${escape(question.referencia_tematica)}</div>`) : '';
         return `<article class="question"><div class="meta">${escape(question.anio || '')} \u00B7 ${escape(question.examen_origen || '')} \u00B7 Pregunta ${escape(question.numero_original || index + 1)}</div><h2>${escape(question.enunciado || 'Enunciado no disponible')}</h2><ul class="options">${options}</ul>${reference}<details class="answer"><summary>Ver respuesta y explicaci\u00F3n</summary><p><strong>Respuesta correcta: ${answer}</strong></p>${explanation}</details></article>`;
       }).join('');
+      const tooltip = popup.document.createElement('aside');
+      tooltip.className = 'article-tooltip';
+      tooltip.setAttribute('role','tooltip');
+      tooltip.hidden = true;
+      popup.document.body.appendChild(tooltip);
+      let hideTimer, activeButton;
+      const hideTooltip = force => {
+        if (!force && activeButton?.dataset.pinned === 'true') return;
+        hideTimer = popup.setTimeout(() => {
+          tooltip.hidden = true;
+          activeButton?.setAttribute('aria-expanded','false');
+        }, 160);
+      };
+      const showTooltip = button => {
+        activeButton = button;
+        popup.clearTimeout(hideTimer);
+        let text = '';
+        try { text = popup.opener?.getStudyArticleText?.(number, button.dataset.reference) || ''; } catch {}
+        const escapedText = escape(text || 'No se ha encontrado el texto de este art\u00EDculo en los apuntes del tema.');
+        const paragraphs = escapedText.split(/\n{2,}/).map(part => `<p>${part.replace(/(^|\n)#{1,6}\s+/g,'$1').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</p>`).join('');
+        tooltip.innerHTML = `<strong>${escape(button.dataset.reference)}</strong>${paragraphs}`;
+        tooltip.hidden = false;
+        const rect = button.getBoundingClientRect();
+        const width = Math.min(480, popup.innerWidth - 24);
+        tooltip.style.width = `${width}px`;
+        tooltip.style.left = `${Math.max(12, Math.min(rect.left, popup.innerWidth - width - 12))}px`;
+        tooltip.style.top = `${Math.max(12, Math.min(rect.bottom + 8, popup.innerHeight - tooltip.offsetHeight - 12))}px`;
+        button.setAttribute('aria-expanded','true');
+      };
+      container.querySelectorAll('[data-study-article]').forEach(button => {
+        button.dataset.pinned = 'false';
+        button.addEventListener('mouseenter', () => { button.dataset.pinned = 'false'; showTooltip(button); });
+        button.addEventListener('focus', () => showTooltip(button));
+        button.addEventListener('mouseleave', () => hideTooltip(false));
+        button.addEventListener('blur', () => hideTooltip(false));
+        button.addEventListener('click', () => {
+          button.dataset.pinned = button.dataset.pinned === 'true' ? 'false' : 'true';
+          if (button.dataset.pinned === 'true') showTooltip(button);
+          else hideTooltip(true);
+        });
+      });
+      tooltip.addEventListener('mouseenter', () => popup.clearTimeout(hideTimer));
+      tooltip.addEventListener('mouseleave', () => hideTooltip(false));
+      popup.document.addEventListener('keydown', event => { if (event.key === 'Escape') hideTooltip(true); });
+      popup.document.addEventListener('click', event => {
+        if (!event.target.closest('[data-study-article]') && !tooltip.contains(event.target)) {
+          if (activeButton) activeButton.dataset.pinned = 'false';
+          hideTooltip(true);
+        }
+      });
     })
     .catch(() => {
       const status = popup.document.querySelector('#status');
