@@ -88,57 +88,70 @@ document.addEventListener('click', event => {
 
 
 const studyArticleMarkdownCache = new Map();
+function getStudyTopicMarkdown(number) {
+  if (studyArticleMarkdownCache.has(number)) return studyArticleMarkdownCache.get(number);
+  const encoded = window.topicMaterialB64?.[number];
+  if (!encoded) return '';
+  const bytes = Uint8Array.from(atob(encoded), character => character.charCodeAt(0));
+  const markdown = new TextDecoder('utf-8').decode(bytes);
+  studyArticleMarkdownCache.set(number, markdown);
+  return markdown;
+}
+
 window.getStudyArticleText = function(topicNumber, reference) {
-  let markdown = studyArticleMarkdownCache.get(topicNumber);
-  if (!markdown) {
-    const encoded = window.topicMaterialB64?.[topicNumber];
-    if (!encoded) return '';
-    const bytes = Uint8Array.from(atob(encoded), character => character.charCodeAt(0));
-    markdown = new TextDecoder('utf-8').decode(bytes);
-    studyArticleMarkdownCache.set(topicNumber, markdown);
-  }
   const citation = String(reference || '');
   const articleMatches = [...citation.matchAll(/arts?\.?\s*(\d+(?:\.\d+)*)/gi)];
   if (!articleMatches.length) return '';
   const lawName = citation.slice(0, articleMatches[0].index).replace(/[,;\s]+$/, '');
   const normalize = value => String(value || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const sections = markdown.split(/(?=^##\s+)/m);
   const lawNumber = lawName.match(/\d{1,4}\/\d{4}/);
   const normalizedLaw = normalize(lawName);
-  const section = sections.find(part => {
-    const heading = (part.match(/^##\s+(.+)$/m) || [,''])[1];
-    const normalizedHeading = normalize(heading);
-    if (lawNumber) return heading.includes(lawNumber[0]);
-    if (normalizedLaw.includes('constituci')) return normalizedHeading.includes('constituci');
-    if (normalizedLaw.includes('estatuto') || normalizedLaw.includes('estatut')) return normalizedHeading.includes('estatut') || normalizedHeading.includes('autonomia');
-    if (normalizedLaw.includes('tfue')) return normalizedHeading.includes('funcionamiento') || normalizedHeading.includes('tfue');
-    if (normalizedLaw.includes('tue')) return normalizedHeading.includes('union europea') || normalizedHeading.includes('tue');
-    return normalizedHeading.includes(normalizedLaw.slice(0, 24));
-  });
-  if (!section) return '';
-  const lines = section.split(/\r?\n/);
+  const topicOrder = [Number(topicNumber), ...Array.from({length:24}, (_, index) => index + 1).filter(number => number !== Number(topicNumber))];
+  const matchingSections = [];
+  for (const number of topicOrder) {
+    const markdown = getStudyTopicMarkdown(number);
+    if (!markdown) continue;
+    const sections = markdown.split(/(?=^##\s+)/m);
+    const documentTitle = normalize((markdown.match(/^#\s+(.+)$/m) || [,''])[1]);
+    const matching = sections.filter(part => {
+      const heading = (part.match(/^##\s+(.+)$/m) || [,''])[1];
+      const normalizedHeading = normalize(heading);
+      if (lawNumber) return normalizedHeading.includes(normalize(lawNumber[0])) || documentTitle.includes(normalize(lawNumber[0]));
+      if (normalizedLaw.includes('constituci')) return normalizedHeading.includes('constituci');
+      if (normalizedLaw.includes('estatuto') || normalizedLaw.includes('estatut')) return normalizedHeading.includes('estatut') || normalizedHeading.includes('autonomia');
+      if (normalizedLaw.includes('tfue')) return normalizedHeading.includes('funcionamiento') || normalizedHeading.includes('tfue');
+      if (normalizedLaw.includes('tue')) return normalizedHeading.includes('union europea') || /\btue\b/i.test(normalizedHeading);
+      return normalizedHeading.includes(normalizedLaw.slice(0, 24));
+    });
+    if (!matching.length && !lawNumber && normalizedLaw.includes('estatut')) matching.push(markdown);
+    for (const section of matching) matchingSections.push({number, section});
+  }
   const bodies = articleMatches.map(articleMatch => {
     const requested = articleMatch[1].replace(/\s/g, '');
-    let target = requested;
-    const findArticle = article => lines.findIndex(line => {
-      const match = line.match(/^###\s+Art.{0,3}culo\s+(\d+(?:\.\d+)*)/i);
-      return match && match[1] === article;
-    });
-    let start = findArticle(target);
-    while (start < 0 && target.includes('.')) {
-      target = target.slice(0, target.lastIndexOf('.'));
-      start = findArticle(target);
+    for (const {section} of matchingSections) {
+      const lines = section.split(/\r?\n/);
+      let target = requested;
+      const findArticle = article => lines.findIndex(line => {
+        const match = line.match(/^###\s+Art.{0,3}culo\s+(\d+(?:\.\d+)*)/i);
+        return match && match[1] === article;
+      });
+      let start = findArticle(target);
+      while (start < 0 && target.includes('.')) {
+        target = target.slice(0, target.lastIndexOf('.'));
+        start = findArticle(target);
+      }
+      if (start < 0) continue;
+      let end = lines.findIndex((line, index) => index > start && (/^###\s+Art.{0,3}culo\s+\d+/i.test(line) || /^##\s+/.test(line)));
+      if (end < 0) end = lines.length;
+      const body = lines.slice(start, end).join('\n')
+        .replace(/^###\s+Art.{0,3}culo\s+\d+(?:\.\d+)*\s*$/im, '')
+        .replace(/\[\[HIGHLIGHT\]\]|\[\[\/HIGHLIGHT\]\]/g, '')
+        .replace(/\[\[EXAM-REF:[^\]]+\]\]/g, '')
+        .trim();
+      const fallbackLabel = target !== requested ? ` completo (incluye apartado ${requested})` : '';
+      return articleMatches.length > 1 || fallbackLabel ? `Art\u00EDculo ${target}${fallbackLabel}\n${body}` : body;
     }
-    if (start < 0) return '';
-    let end = lines.findIndex((line, index) => index > start && (/^###\s+Art.{0,3}culo\s+\d+/i.test(line) || /^##\s+/.test(line)));
-    if (end < 0) end = lines.length;
-    const body = lines.slice(start, end).join('\n')
-      .replace(/^###\s+Art.{0,3}culo\s+\d+(?:\.\d+)*\s*$/im, '')
-      .replace(/\[\[HIGHLIGHT\]\]|\[\[\/HIGHLIGHT\]\]/g, '')
-      .replace(/\[\[EXAM-REF:[^\]]+\]\]/g, '')
-      .trim();
-    const fallbackLabel = target !== requested ? ` completo (incluye apartado ${requested})` : '';
-    return articleMatches.length > 1 || fallbackLabel ? `Art\u00EDculo ${target}${fallbackLabel}\n${body}` : body;
+    return '';
   }).filter(Boolean);
   return bodies.join('\n\n');
 };
@@ -151,9 +164,17 @@ function openTopicQuestions(number) {
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   popup.document.open();
   popup.document.write(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Preguntas &#183; Tema ${String(number).padStart(2,'0')}</title><style>
-    *{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#263328;font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}.bar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5ebe3;padding:12px max(18px,calc((100vw - 900px)/2));display:flex;justify-content:space-between;align-items:center;color:#55705a;font-size:12px}.bar button{border:1px solid #dce8da;background:#f5f8f3;color:#286342;border-radius:7px;padding:8px 11px;font-weight:600;cursor:pointer}main{max-width:900px;margin:30px auto;padding:0 18px 50px}.eyebrow{color:#718071;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}h1{font-size:30px;line-height:1.2;margin:6px 0}header p:last-child{color:#718071}.question{background:#fff;border:1px solid #e5ebe3;border-radius:12px;padding:20px;margin:12px 0}.meta{font-size:10px;color:#718071;letter-spacing:.5px}.question h2{font-size:16px;line-height:1.5;margin:10px 0 14px}.options{list-style:none;padding:0;margin:0;display:grid;gap:7px}.options li{padding:10px 12px;border:1px solid #e7ebe4;border-radius:8px}.letter{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:7px;border-radius:6px;background:#f0f5ee;color:#34764d;font-weight:700;font-size:11px}.answer{margin-top:12px;border-top:1px solid #eff1ec;padding-top:10px}.answer summary{cursor:pointer;color:#286342;font-size:12px;font-weight:700}.answer p{font-size:13px;color:#566256}.empty{padding:16px;background:#fff5ee;border-radius:9px;color:#805b34}.study-reference{display:block;width:100%;margin-top:12px;padding:10px 12px;border:1px solid #dce8da;border-left:3px solid #78a47b;border-radius:7px;background:#f1f6ef;color:#405943;text-align:left;font:inherit;cursor:help}.study-reference strong{display:block;color:#286342;font-size:10px;text-transform:uppercase;letter-spacing:.45px}.study-reference small{display:block;margin-top:4px;color:#708572;font-size:10px}.study-reference:hover{background:#e9f2e8}.article-tooltip{position:fixed;z-index:20;max-width:calc(100vw - 24px);max-height:min(60vh,520px);overflow:auto;padding:14px 16px;border:1px solid #cbdcc9;border-radius:10px;background:#fff;box-shadow:0 10px 32px #2633282b;color:#334336;font-size:13px;line-height:1.65}.article-tooltip[hidden]{display:none}.article-tooltip>strong{display:block;margin-bottom:8px;color:#286342;font-size:12px}.article-tooltip p{margin:7px 0}@media(max-width:600px){main{margin:20px auto;padding:0 12px 35px}h1{font-size:24px}.question{padding:15px}}
-  </style></head><body><div class="bar"><span>OpoGVA &#183; Preguntas del temario</span><button onclick="if(window.opener&&!window.opener.closed){window.opener.focus();window.close()}else{window.close()}">Volver al temario</button></div><main><header><p class="eyebrow">${topic ? escape(topic.b === 'general' ? 'Parte general' : 'Parte especial') + ' \u00B7 ' : ''}Tema ${String(number).padStart(2,'0')}</p><h1>${escape(topic?.title || `Tema ${number}`)}</h1><p id="status">Cargando preguntas...</p></header><div id="questions"></div></main></body></html>`);
+    *{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#263328;font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}.bar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5ebe3;padding:12px max(18px,calc((100vw - 900px)/2));display:flex;justify-content:space-between;align-items:center;color:#55705a;font-size:12px}.bar button{border:1px solid #dce8da;background:#f5f8f3;color:#286342;border-radius:7px;padding:8px 11px;font-weight:600;cursor:pointer}main{max-width:900px;margin:30px auto;padding:0 18px 50px}.eyebrow{color:#718071;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}h1{font-size:30px;line-height:1.2;margin:6px 0}header p:last-child{color:#718071}.question{background:#fff;border:1px solid #e5ebe3;border-radius:12px;padding:20px;margin:12px 0}.meta{font-size:10px;color:#718071;letter-spacing:.5px}.question h2{font-size:16px;line-height:1.5;margin:10px 0 14px}.options{list-style:none;padding:0;margin:0;display:grid;gap:7px}.options li{padding:10px 12px;border:1px solid #e7ebe4;border-radius:8px}.letter{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:7px;border-radius:6px;background:#f0f5ee;color:#34764d;font-weight:700;font-size:11px}.answer{margin-top:12px;border-top:1px solid #eff1ec;padding-top:10px}.answer summary{cursor:pointer;color:#286342;font-size:12px;font-weight:700}.answer p{font-size:13px;color:#566256}.empty{padding:16px;background:#fff5ee;border-radius:9px;color:#805b34}.study-reference{display:block;width:100%;margin-top:12px;padding:10px 12px;border:1px solid #dce8da;border-left:3px solid #78a47b;border-radius:7px;background:#f1f6ef;color:#405943;text-align:left;font:inherit;cursor:help}.study-reference strong{display:block;color:#286342;font-size:10px;text-transform:uppercase;letter-spacing:.45px}.study-reference small{display:block;margin-top:4px;color:#708572;font-size:10px}.study-reference:hover{background:#e9f2e8}.article-tooltip{position:fixed;z-index:20;max-width:calc(100vw - 24px);max-height:min(60vh,520px);overflow:auto;padding:14px 16px;border:1px solid #cbdcc9;border-radius:10px;background:#fff;box-shadow:0 10px 32px #2633282b;color:#334336;font-size:13px;line-height:1.65}.article-tooltip[hidden]{display:none}.article-tooltip>strong{display:block;margin-bottom:8px;color:#286342;font-size:12px}.article-tooltip p{margin:7px 0}.question-export-tools{display:flex;align-items:end;gap:9px;flex-wrap:wrap;margin:15px 0 2px}.question-export-tools label{display:grid;gap:4px;color:#6d7b6e;font-size:10px}.question-export-tools select,.question-export-tools button{min-height:36px;border:1px solid #dce8da;border-radius:7px;background:#f5f8f3;color:#286342;padding:7px 10px;font:600 11px system-ui}.question-export-tools button{cursor:pointer}.question-export-tools button:disabled{opacity:.55;cursor:wait}#question-export-status{min-height:17px;color:#708572;font-size:10px}@media(max-width:600px){main{margin:20px auto;padding:0 12px 35px}h1{font-size:24px}.question{padding:15px}}
+  </style></head><body><div class="bar"><span>OpoGVA &#183; Preguntas del temario</span><button onclick="if(window.opener&&!window.opener.closed){window.opener.focus();window.close()}else{window.close()}">Volver al temario</button></div><main><header><p class="eyebrow">${topic ? escape(topic.b === 'general' ? 'Parte general' : 'Parte especial') + ' \u00B7 ' : ''}Tema ${String(number).padStart(2,'0')}</p><h1>${escape(topic?.title || `Tema ${number}`)}</h1><p id="status">Cargando preguntas...</p><div class="question-export-tools"><label>Contenido<select id="question-export-scope"><option value="topic">Este tema</option><option value="all">Todo el temario</option></select></label><label>Formato<select id="question-export-format"><option value="md">Markdown (.md)</option><option value="doc">Word (.doc)</option><option value="txt">Texto (.txt)</option><option value="print">Imprimir</option></select></label><button type="button" id="question-export-submit">Exportar / imprimir</button></div><p id="question-export-status" aria-live="polite"></p></header><div id="questions"></div></main></body></html>`);
   popup.document.close();
+  const exportButton=popup.document.querySelector('#question-export-submit');
+  exportButton?.addEventListener('click',()=>{
+    const format=popup.document.querySelector('#question-export-format').value;
+    const scope=popup.document.querySelector('#question-export-scope').value;
+    const status=popup.document.querySelector('#question-export-status');
+    const exportTask=popup.opener?.exportQuestionBank?.(format,scope,number,status);
+    if(exportTask?.finally){exportButton.disabled=true;exportTask.finally(()=>{exportButton.disabled=false;});}
+  });
 
   fetch(new URL('OPOSICIONES/AUX ADM GVA/EXAMENES/banco_agrupado_por_temario.json', location.href), {cache:'no-store'})
     .then(response => { if (!response.ok) throw new Error('No se pudo cargar el banco'); return response.json(); })
@@ -195,7 +216,7 @@ function openTopicQuestions(number) {
         popup.clearTimeout(hideTimer);
         let text = '';
         try { text = popup.opener?.getStudyArticleText?.(number, button.dataset.reference) || ''; } catch {}
-        const escapedText = escape(text || 'No se ha encontrado el texto de este art\u00EDculo en los apuntes del tema.');
+        const escapedText = escape(text || 'No se ha encontrado el texto literal de este art\u00EDculo en los apuntes de ninguno de los temas.');
         const paragraphs = escapedText.split(/\n{2,}/).map(part => `<p>${part.replace(/(^|\n)#{1,6}\s+/g,'$1').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</p>`).join('');
         tooltip.innerHTML = `<strong>${escape(button.dataset.reference)}</strong>${paragraphs}`;
         tooltip.hidden = false;
@@ -241,9 +262,8 @@ function exportQuestionText(value) {
   return String(value ?? '').replace(/\[\[HIGHLIGHT\]\]|\[\[\/HIGHLIGHT\]\]/g,'').replace(/\[\[EXAM-REF:[^\]]+\]\]/g,'').trim();
 }
 
-function exportQuestionBank(format) {
-  const status=document.querySelector('#question-export-status');
-  const buttons=[...document.querySelectorAll('[data-question-export]')];
+function exportQuestionBank(format, scope='all', topicNumber=null, statusNode=null) {
+  const status=statusNode||document.querySelector('#question-export-status');
   let printWindow=null;
   if(format==='print') {
     printWindow=window.open('','_blank');
@@ -251,15 +271,18 @@ function exportQuestionBank(format) {
     printWindow.document.write('<!doctype html><html lang="es"><meta charset="utf-8"><title>Preparando impresi\u00F3n</title><body>Preparando las preguntas...</body></html>');
     printWindow.document.close();
   }
-  buttons.forEach(button=>button.disabled=true);
-  if(status)status.textContent='Preparando el banco completo...';
-  fetch(new URL('OPOSICIONES/AUX ADM GVA/EXAMENES/banco_agrupado_por_temario.json',location.href),{cache:'no-store'})
+  if(status)status.textContent='Preparando preguntas...';
+  return fetch(new URL('OPOSICIONES/AUX ADM GVA/EXAMENES/banco_agrupado_por_temario.json',location.href),{cache:'no-store'})
     .then(response=>{if(!response.ok)throw new Error('No se pudo cargar el banco de preguntas.');return response.json()})
     .then(bank=>{
-      const records=(bank.temas||[]).flatMap(topic=>(topic.preguntas||[]).map(question=>({topic,question,articleText:question.referencia_tematica_tipo==='articulo'?window.getStudyArticleText(topic.tema_numero,question.referencia_tematica):''})));
+      const selectedTopics=scope==='topic'?(bank.temas||[]).filter(topic=>Number(topic.tema_numero)===Number(topicNumber)):(bank.temas||[]);
+      const records=selectedTopics.flatMap(topic=>(topic.preguntas||[]).map(question=>({topic,question,articleText:question.referencia_tematica_tipo==='articulo'?window.getStudyArticleText(topic.tema_numero,question.referencia_tematica):''})));
       const plain=value=>exportQuestionText(value);
-      const markdown=['# Banco de preguntas \u2014 Auxiliar Administrativo GVA','',`${records.length} preguntas ordenadas por tema y art\u00EDculo.`,''];
-      const text=['BANCO DE PREGUNTAS - AUXILIAR ADMINISTRATIVO GVA','',`${records.length} preguntas ordenadas por tema y art\u00EDculo.`,''];
+      const topicInfo=selectedTopics[0];
+      const exportTitle=scope==='topic'&&topicInfo?`Tema ${String(topicInfo.tema_numero).padStart(2,'0')} \u2014 ${plain(topicInfo.titulo)}`:'Banco de preguntas \u2014 Auxiliar Administrativo GVA';
+      const filename=scope==='topic'?`OpoGVA-tema-${String(topicNumber).padStart(2,'0')}-preguntas`:'OpoGVA-preguntas-temario';
+      const markdown=[`# ${exportTitle}`,'',`${records.length} preguntas ordenadas por tema y art\u00EDculo.`,''];
+      const text=[exportTitle.toUpperCase(),'',`${records.length} preguntas ordenadas por tema y art\u00EDculo.`,''];
       const htmlQuestions=[];
       let currentTopic=null;
       records.forEach(({topic,question,articleText},index)=>{
@@ -279,15 +302,15 @@ function exportQuestionBank(format) {
         const articleHtml=articleText?`<h4>Texto del art\u00EDculo</h4><div class="article-text">${escapeHtml(plain(articleText)).replace(/\n/g,'<br>')}</div>`:question.referencia_tematica_tipo==='articulo'?'<p><strong>Texto del art\u00EDculo:</strong> No encontrado en los apuntes disponibles.</p>':'';
         htmlQuestions.push(`<article><h3>${escapeHtml(questionTitle)}</h3><p>${escapeHtml(plain(question.enunciado))}</p><ul>${options.map(([key,value])=>`<li><strong>${escapeHtml(key.toUpperCase())}.</strong> ${escapeHtml(plain(value))}</li>`).join('')}</ul><p><strong>Respuesta correcta:</strong> ${escapeHtml(plain(question.respuesta_correcta||'Sin respuesta'))}</p><p><strong>Explicaci\u00F3n:</strong> ${escapeHtml(plain(question.explicacion||'Sin explicaci\u00F3n disponible'))}</p><p><strong>Art\u00EDculo o apartado para estudiar:</strong> ${escapeHtml(plain(reference))}</p>${articleHtml}</article>`);
       });
-      if(format==='md') downloadQuestionFile('OpoGVA-preguntas-temario.md',markdown.join('\n'),'text/markdown;charset=utf-8');
-      if(format==='txt') downloadQuestionFile('OpoGVA-preguntas-temario.txt','\uFEFF'+text.join('\n'),'text/plain;charset=utf-8');
-      const html=`<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Preguntas Auxiliar Administrativo GVA</title><style>body{font:11pt/1.5 Arial,sans-serif;color:#222}h1{font-size:20pt}h2{margin-top:28px;border-bottom:2px solid #6d9271;padding-bottom:5px}article{margin:18px 0 25px;page-break-inside:avoid}h3{font-size:12pt}li{margin:4px 0}.article-text{border-left:3px solid #78a47b;padding:8px 12px;background:#f3f7f1}.article-text p{margin:5px 0}@media print{article{page-break-inside:avoid}}</style></head><body><h1>Banco de preguntas \u2014 Auxiliar Administrativo GVA</h1>${htmlQuestions.join('')}</body></html>`;
-      if(format==='doc') downloadQuestionFile('OpoGVA-preguntas-temario.doc','\uFEFF'+html,'application/msword;charset=utf-8');
+      if(format==='md') downloadQuestionFile(`${filename}.md`,markdown.join('\n'),'text/markdown;charset=utf-8');
+      if(format==='txt') downloadQuestionFile(`${filename}.txt`,'\uFEFF'+text.join('\n'),'text/plain;charset=utf-8');
+      const html=`<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Preguntas Auxiliar Administrativo GVA</title><style>body{font:11pt/1.5 Arial,sans-serif;color:#222}h1{font-size:20pt}h2{margin-top:28px;border-bottom:2px solid #6d9271;padding-bottom:5px}article{margin:18px 0 25px;page-break-inside:avoid}h3{font-size:12pt}li{margin:4px 0}.article-text{border-left:3px solid #78a47b;padding:8px 12px;background:#f3f7f1}.article-text p{margin:5px 0}@media print{article{page-break-inside:avoid}}</style></head><body><h1>${escapeHtml(exportTitle)}</h1>${htmlQuestions.join('')}</body></html>`;
+      if(format==='doc') downloadQuestionFile(`${filename}.doc`,'\uFEFF'+html,'application/msword;charset=utf-8');
       if(format==='print'&&printWindow){printWindow.document.open();printWindow.document.write(html);printWindow.document.close();setTimeout(()=>{try{printWindow.focus();printWindow.print()}catch{}},500);}
       if(status)status.textContent=`${records.length} preguntas preparadas${format==='print'?' para imprimir':'.'}`;
     })
     .catch(error=>{if(status)status.textContent=error.message;if(printWindow)printWindow.close();})
-    .finally(()=>buttons.forEach(button=>button.disabled=false));
+    ;
 }
 
 function escapeHtml(value) {
@@ -299,7 +322,4 @@ function downloadQuestionFile(filename,content,type) {
   link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
 }
 
-document.addEventListener('click',event=>{
-  const button=event.target.closest('[data-question-export]');
-  if(button){event.preventDefault();exportQuestionBank(button.dataset.questionExport);}
-});
+window.exportQuestionBank=exportQuestionBank;
