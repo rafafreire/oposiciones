@@ -112,24 +112,7 @@ function openTopicQuestions(number) {
         container.innerHTML = '<p class="empty">Todav\u00EDa no hay preguntas asignadas a este tema en el banco.</p>';
         return;
       }
-      const articleKey = question => {
-        const reference = String(question.referencia_tematica || '');
-        const match = question.referencia_tematica_tipo === 'articulo' ? reference.match(/art.{0,2}(\d+(?:\.\d+)*)/i) : null;
-        const law = match ? reference.slice(0, match.index).replace(/[,;\s]+$/, '') : reference;
-        return {hasArticle:Boolean(match), law, parts:match ? match[1].split('.').map(Number) : []};
-      };
-      const orderedQuestions = [...questions].sort((a,b) => {
-        const left=articleKey(a), right=articleKey(b);
-        if (left.hasArticle !== right.hasArticle) return left.hasArticle ? -1 : 1;
-        const lawOrder=left.law.localeCompare(right.law,'es',{sensitivity:'base'});
-        if (lawOrder) return lawOrder;
-        for (let i=0;i<Math.max(left.parts.length,right.parts.length);i++) {
-          const difference=(left.parts[i] ?? -1)-(right.parts[i] ?? -1);
-          if (difference) return difference;
-        }
-        return Number(a.anio||0)-Number(b.anio||0) || Number(a.numero_original||0)-Number(b.numero_original||0);
-      });
-      container.innerHTML = orderedQuestions.map((question, index) => {
+      container.innerHTML = questions.map((question, index) => {
         const options = Object.entries(question.opciones || {}).map(([letter, text]) => `<li><span class="letter">${escape(letter.toUpperCase())}</span>${escape(text)}</li>`).join('');
         const answer = escape(question.respuesta_correcta || 'Sin respuesta');
         const explanation = question.explicacion ? `<p>${escape(question.explicacion)}</p>` : '';
