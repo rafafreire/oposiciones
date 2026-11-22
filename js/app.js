@@ -87,20 +87,25 @@ document.addEventListener('click', event => {
 });
 
 
+const studyArticleMarkdownCache = new Map();
 window.getStudyArticleText = function(topicNumber, reference) {
-  const encoded = window.topicMaterialB64?.[topicNumber];
-  if (!encoded) return '';
-  const bytes = Uint8Array.from(atob(encoded), character => character.charCodeAt(0));
-  const markdown = new TextDecoder('utf-8').decode(bytes);
+  let markdown = studyArticleMarkdownCache.get(topicNumber);
+  if (!markdown) {
+    const encoded = window.topicMaterialB64?.[topicNumber];
+    if (!encoded) return '';
+    const bytes = Uint8Array.from(atob(encoded), character => character.charCodeAt(0));
+    markdown = new TextDecoder('utf-8').decode(bytes);
+    studyArticleMarkdownCache.set(topicNumber, markdown);
+  }
   const citation = String(reference || '');
-  const articleMatch = citation.match(/art.{0,2}(\d+(?:\.\d+)*)/i);
-  if (!articleMatch) return '';
-  const lawName = citation.slice(0, articleMatch.index).replace(/[,;\s]+$/, '');
+  const articleMatches = [...citation.matchAll(/arts?\.?\s*(\d+(?:\.\d+)*)/gi)];
+  if (!articleMatches.length) return '';
+  const lawName = citation.slice(0, articleMatches[0].index).replace(/[,;\s]+$/, '');
   const normalize = value => String(value || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const sections = markdown.split(/(?=^##\s+)/m);
   const lawNumber = lawName.match(/\d{1,4}\/\d{4}/);
   const normalizedLaw = normalize(lawName);
-  let section = sections.find(part => {
+  const section = sections.find(part => {
     const heading = (part.match(/^##\s+(.+)$/m) || [,''])[1];
     const normalizedHeading = normalize(heading);
     if (lawNumber) return heading.includes(lawNumber[0]);
@@ -112,19 +117,30 @@ window.getStudyArticleText = function(topicNumber, reference) {
   });
   if (!section) return '';
   const lines = section.split(/\r?\n/);
-  const target = articleMatch[1].replace(/\s/g, '');
-  const start = lines.findIndex(line => {
-    const match = line.match(/^###\s+Art.{0,3}culo\s+(\d+(?:\.\d+)*)/i);
-    return match && match[1] === target;
-  });
-  if (start < 0) return '';
-  let end = lines.findIndex((line, index) => index > start && (/^###\s+Art.{0,3}culo\s+\d+/i.test(line) || /^##\s+/.test(line)));
-  if (end < 0) end = lines.length;
-  return lines.slice(start, end).join('\n')
-    .replace(/^###\s+Art.{0,3}culo\s+\d+(?:\.\d+)*\s*$/im, '')
-    .replace(/\[\[HIGHLIGHT\]\]|\[\[\/HIGHLIGHT\]\]/g, '')
-    .replace(/\[\[EXAM-REF:[^\]]+\]\]/g, '')
-    .trim();
+  const bodies = articleMatches.map(articleMatch => {
+    const requested = articleMatch[1].replace(/\s/g, '');
+    let target = requested;
+    const findArticle = article => lines.findIndex(line => {
+      const match = line.match(/^###\s+Art.{0,3}culo\s+(\d+(?:\.\d+)*)/i);
+      return match && match[1] === article;
+    });
+    let start = findArticle(target);
+    while (start < 0 && target.includes('.')) {
+      target = target.slice(0, target.lastIndexOf('.'));
+      start = findArticle(target);
+    }
+    if (start < 0) return '';
+    let end = lines.findIndex((line, index) => index > start && (/^###\s+Art.{0,3}culo\s+\d+/i.test(line) || /^##\s+/.test(line)));
+    if (end < 0) end = lines.length;
+    const body = lines.slice(start, end).join('\n')
+      .replace(/^###\s+Art.{0,3}culo\s+\d+(?:\.\d+)*\s*$/im, '')
+      .replace(/\[\[HIGHLIGHT\]\]|\[\[\/HIGHLIGHT\]\]/g, '')
+      .replace(/\[\[EXAM-REF:[^\]]+\]\]/g, '')
+      .trim();
+    const fallbackLabel = target !== requested ? ` completo (incluye apartado ${requested})` : '';
+    return articleMatches.length > 1 || fallbackLabel ? `Art\u00EDculo ${target}${fallbackLabel}\n${body}` : body;
+  }).filter(Boolean);
+  return bodies.join('\n\n');
 };
 
 function openTopicQuestions(number) {
@@ -219,3 +235,71 @@ function openTopicQuestions(number) {
       if (container) container.innerHTML = '<p class="empty">Abre la aplicaci\u00F3n desde su servidor o GitHub Pages para acceder al archivo JSON.</p>';
     });
 }
+
+
+function exportQuestionText(value) {
+  return String(value ?? '').replace(/\[\[HIGHLIGHT\]\]|\[\[\/HIGHLIGHT\]\]/g,'').replace(/\[\[EXAM-REF:[^\]]+\]\]/g,'').trim();
+}
+
+function exportQuestionBank(format) {
+  const status=document.querySelector('#question-export-status');
+  const buttons=[...document.querySelectorAll('[data-question-export]')];
+  let printWindow=null;
+  if(format==='print') {
+    printWindow=window.open('','_blank');
+    if(!printWindow) { if(status)status.textContent='Permite las ventanas emergentes para imprimir.'; return; }
+    printWindow.document.write('<!doctype html><html lang="es"><meta charset="utf-8"><title>Preparando impresi\u00F3n</title><body>Preparando las preguntas...</body></html>');
+    printWindow.document.close();
+  }
+  buttons.forEach(button=>button.disabled=true);
+  if(status)status.textContent='Preparando el banco completo...';
+  fetch(new URL('OPOSICIONES/AUX ADM GVA/EXAMENES/banco_agrupado_por_temario.json',location.href),{cache:'no-store'})
+    .then(response=>{if(!response.ok)throw new Error('No se pudo cargar el banco de preguntas.');return response.json()})
+    .then(bank=>{
+      const records=(bank.temas||[]).flatMap(topic=>(topic.preguntas||[]).map(question=>({topic,question,articleText:question.referencia_tematica_tipo==='articulo'?window.getStudyArticleText(topic.tema_numero,question.referencia_tematica):''})));
+      const plain=value=>exportQuestionText(value);
+      const markdown=['# Banco de preguntas \u2014 Auxiliar Administrativo GVA','',`${records.length} preguntas ordenadas por tema y art\u00EDculo.`,''];
+      const text=['BANCO DE PREGUNTAS - AUXILIAR ADMINISTRATIVO GVA','',`${records.length} preguntas ordenadas por tema y art\u00EDculo.`,''];
+      const htmlQuestions=[];
+      let currentTopic=null;
+      records.forEach(({topic,question,articleText},index)=>{
+        if(currentTopic!==topic.tema_numero){
+          currentTopic=topic.tema_numero;
+          markdown.push(`## Tema ${String(currentTopic).padStart(2,'0')} \u2014 ${plain(topic.titulo)}`,'');
+          text.push('',`TEMA ${String(currentTopic).padStart(2,'0')} - ${plain(topic.titulo)}`,'='.repeat(76));
+          htmlQuestions.push(`<h2>Tema ${String(currentTopic).padStart(2,'0')} \u2014 ${escapeHtml(topic.titulo)}</h2>`);
+        }
+        const questionTitle=`Pregunta ${question.numero_original||index+1} \u00B7 ${question.anio||''}`;
+        const options=Object.entries(question.opciones||{});
+        const reference=question.referencia_tematica||'Sin referencia disponible';
+        markdown.push(`### ${questionTitle}`,'',plain(question.enunciado),'',...options.map(([key,value])=>`- **${key.toUpperCase()}:** ${plain(value)}`),'',`**Respuesta correcta:** ${plain(question.respuesta_correcta||'Sin respuesta')}`,'',`**Explicaci\u00F3n:** ${plain(question.explicacion||'Sin explicaci\u00F3n disponible')}`,'',`**Art\u00EDculo o apartado para estudiar:** ${plain(reference)}`,'');
+        text.push('',`${questionTitle}`,plain(question.enunciado),...options.map(([key,value])=>`${key.toUpperCase()}) ${plain(value)}`),'',`Respuesta correcta: ${plain(question.respuesta_correcta||'Sin respuesta')}`,`Explicaci\u00F3n: ${plain(question.explicacion||'Sin explicaci\u00F3n disponible')}`,`Art\u00EDculo o apartado para estudiar: ${plain(reference)}`);
+        if(articleText){markdown.push('**Texto del art\u00EDculo:**','',articleText,'');text.push('Texto del art\u00EDculo:',plain(articleText));}else if(question.referencia_tematica_tipo==='articulo'){markdown.push('_Texto del art\u00EDculo no encontrado en los apuntes disponibles._','');text.push('Texto del art\u00EDculo no encontrado en los apuntes disponibles.');}
+        text.push('-'.repeat(76));
+        const articleHtml=articleText?`<h4>Texto del art\u00EDculo</h4><div class="article-text">${escapeHtml(plain(articleText)).replace(/\n/g,'<br>')}</div>`:question.referencia_tematica_tipo==='articulo'?'<p><strong>Texto del art\u00EDculo:</strong> No encontrado en los apuntes disponibles.</p>':'';
+        htmlQuestions.push(`<article><h3>${escapeHtml(questionTitle)}</h3><p>${escapeHtml(plain(question.enunciado))}</p><ul>${options.map(([key,value])=>`<li><strong>${escapeHtml(key.toUpperCase())}.</strong> ${escapeHtml(plain(value))}</li>`).join('')}</ul><p><strong>Respuesta correcta:</strong> ${escapeHtml(plain(question.respuesta_correcta||'Sin respuesta'))}</p><p><strong>Explicaci\u00F3n:</strong> ${escapeHtml(plain(question.explicacion||'Sin explicaci\u00F3n disponible'))}</p><p><strong>Art\u00EDculo o apartado para estudiar:</strong> ${escapeHtml(plain(reference))}</p>${articleHtml}</article>`);
+      });
+      if(format==='md') downloadQuestionFile('OpoGVA-preguntas-temario.md',markdown.join('\n'),'text/markdown;charset=utf-8');
+      if(format==='txt') downloadQuestionFile('OpoGVA-preguntas-temario.txt','\uFEFF'+text.join('\n'),'text/plain;charset=utf-8');
+      const html=`<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Preguntas Auxiliar Administrativo GVA</title><style>body{font:11pt/1.5 Arial,sans-serif;color:#222}h1{font-size:20pt}h2{margin-top:28px;border-bottom:2px solid #6d9271;padding-bottom:5px}article{margin:18px 0 25px;page-break-inside:avoid}h3{font-size:12pt}li{margin:4px 0}.article-text{border-left:3px solid #78a47b;padding:8px 12px;background:#f3f7f1}.article-text p{margin:5px 0}@media print{article{page-break-inside:avoid}}</style></head><body><h1>Banco de preguntas \u2014 Auxiliar Administrativo GVA</h1>${htmlQuestions.join('')}</body></html>`;
+      if(format==='doc') downloadQuestionFile('OpoGVA-preguntas-temario.doc','\uFEFF'+html,'application/msword;charset=utf-8');
+      if(format==='print'&&printWindow){printWindow.document.open();printWindow.document.write(html);printWindow.document.close();setTimeout(()=>{try{printWindow.focus();printWindow.print()}catch{}},500);}
+      if(status)status.textContent=`${records.length} preguntas preparadas${format==='print'?' para imprimir':'.'}`;
+    })
+    .catch(error=>{if(status)status.textContent=error.message;if(printWindow)printWindow.close();})
+    .finally(()=>buttons.forEach(button=>button.disabled=false));
+}
+
+function escapeHtml(value) {
+  return String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+function downloadQuestionFile(filename,content,type) {
+  const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),link=document.createElement('a');
+  link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+
+document.addEventListener('click',event=>{
+  const button=event.target.closest('[data-question-export]');
+  if(button){event.preventDefault();exportQuestionBank(button.dataset.questionExport);}
+});
