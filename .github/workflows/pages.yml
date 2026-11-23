@@ -27,6 +27,9 @@ jobs:
       - name: Actualizar los materiales de Auxiliar GVA
         run: python scripts/generate_web_materials.py
 
+      - name: Generar banco de preguntas por tema de Auxiliar AGE
+        run: python scripts/build_age_topic_question_bank.py
+
       - name: Preparar archivos del sitio
         shell: bash
         run: |
@@ -38,6 +41,7 @@ jobs:
           cp "OPOSICIONES/AUX ADM GVA/EXAMENES/EXAMEN_AUXADMGVA_2022_L.pdf" _site/OPOSICIONES/AUX\ ADM\ GVA/EXAMENES/
           cp "OPOSICIONES/AUX ADM GVA/EXAMENES/EXAMEN_AUXADMGVA_2023_L.pdf" _site/OPOSICIONES/AUX\ ADM\ GVA/EXAMENES/
           cp "OPOSICIONES/AUX ADM GVA/EXAMENES/banco_agrupado_por_temario.json" _site/OPOSICIONES/AUX\ ADM\ GVA/EXAMENES/
+          cp "OPOSICIONES/AUX ADM AGE/EXAMENES/banco_agrupado_por_temario.json" "_site/OPOSICIONES/AUX ADM AGE/EXAMENES/"
           cp "OPOSICIONES/AUX ADM AGE/EXAMENES/"*.pdf "_site/OPOSICIONES/AUX ADM AGE/EXAMENES/"
           cp -R "OPOSICIONES/AUX ADM AGE/TEMARIO/BLOQUE I" "_site/OPOSICIONES/AUX ADM AGE/TEMARIO/"
           cp -R "OPOSICIONES/AUX ADM AGE/TEMARIO/BLOQUE II" "_site/OPOSICIONES/AUX ADM AGE/TEMARIO/"
