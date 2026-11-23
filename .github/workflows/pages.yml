@@ -24,6 +24,9 @@ jobs:
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Actualizar los materiales de Auxiliar GVA
+        run: python scripts/generate_web_materials.py
+
       - name: Preparar archivos del sitio
         shell: bash
         run: |
