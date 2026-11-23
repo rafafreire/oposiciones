@@ -78,7 +78,8 @@ def topic_material(number: int) -> str:
         return path.read_text(encoding="utf-8-sig") if path.exists() else ""
     filename = AGE_TOPIC_FILES.get(number)
     if filename:
-        path = ROOT / "OPOSICIONES" / "AUX ADM AGE" / "TEMARIO" / "BLOQUE II" / Path(filename)
+        relative_path = Path(*filename.replace("\\", "/").split("/"))
+        path = ROOT / "OPOSICIONES" / "AUX ADM AGE" / "TEMARIO" / relative_path
         if path.exists():
             return path.read_text(encoding="utf-8-sig")
     # Topic 26 is embedded as base64 in the reader because it has no standalone file.
@@ -242,7 +243,7 @@ def main() -> None:
                     "tema_numero": number,
                     "referencia_tematica": reference,
                 }
-                selected_article, _ = select_article(
+                selected_article, article_score = select_article(
                     question_context, article_index.get(number, [])
                 ) if number is not None else (None, 0.0)
                 explanation = raw.get("explicacion") or ""
