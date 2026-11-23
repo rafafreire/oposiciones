@@ -151,3 +151,16 @@ Las herramientas de IA generativa NO garantizan la veracidad de sus respuestas. 
 ### Riesgos de la IA en el puesto de trabajo y uso responsable
 
 El uso de herramientas de IA en el puesto de trabajo conlleva riesgos que deben gestionarse: 1) Confidencialidad y protección de datos: no deben introducirse en herramientas de IA (especialmente públicas o gratuitas) datos personales, datos sensibles, información confidencial o no publicada, ya que podrían quedar almacenados o usados para entrenar el modelo, vulnerando la normativa de protección de datos y el deber de secreto. 2) Sesgos: los modelos pueden reproducir y amplificar sesgos presentes en los datos con que se entrenaron, generando respuestas discriminatorias o no neutrales. 3) Falta de fiabilidad: posibilidad de alucinaciones e información desactualizada. 4) Dependencia excesiva: delegar el criterio en la IA o aceptar sus respuestas sin revisión puede provocar errores y pérdida de competencias. 5) Transparencia: conviene ser consciente de cuándo se está usando IA y de sus limitaciones. Principios de uso responsable: supervisión humana (la decisión final corresponde siempre a la persona), verificación de las salidas, protección de los datos y la confidencialidad, y respeto a la legalidad vigente. La IA debe emplearse como herramienta de apoyo que mejora la eficiencia, sin sustituir el criterio profesional ni la responsabilidad del empleado público.
+
+
+
+
+
+
+
+
+
+
+
+
+

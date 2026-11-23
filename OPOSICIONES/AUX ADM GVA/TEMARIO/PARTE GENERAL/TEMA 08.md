@@ -1,8 +1,8 @@
-# Tema 8: Igualdad: LO 3/2007, Ley 9/2003 GVA, Ley 4/2023 LGTBI y LO 1/2004 sobre violencia de género
+﻿# Tema 8: Igualdad: LO 3/2007, Ley 9/2003 GVA, Ley 4/2023 LGTBI y LO 1/2004 sobre violencia de género
 
 LO 3/2007: Título preliminar y Título I. Ley 9/2003 GVA igualdad mujeres y hombres. Ley 4/2023 LGTBI: deber de protección y medidas en el ámbito administrativo. LO 1/2004 violencia de género: Título preliminar.
 
-## LO 1/2004
+## Ley Orgánica 1/2004 de medidas de protección integral contra la violencia de género
 
 Ley Orgánica 1/2004, de 28 de diciembre, de Medidas de Protección Integral contra la Violencia de Género (2004)
 
@@ -52,11 +52,10 @@ j) Fomentar la especialización de los colectivos profesionales que intervienen 
 
 k) Garantizar el principio de transversalidad de las medidas, de manera que en su aplicación se tengan en cuenta las necesidades y demandas específicas de todas las mujeres víctimas de violencia de género.
 
-## Ley 9/2003 Igualdad GVA
+## Ley 9/2003 de igualdad entre mujeres y hombres de la Generalitat
 
 Ley 9/2003, de 2 de abril, de la Generalitat, para la igualdad entre mujeres y hombres (2003)
 
-52 artículos3 con examen
 
 ### Artículo 1
 
@@ -507,7 +506,7 @@ Con la entrada en vigor de la presente ley se creará la Defensoría de la Igual
 
 Dicha Defensoría será desempeñada por el Síndic de Greuges, en la forma y condiciones que prevé su ley de creación.
 
-## LO 3/2007
+## Ley Orgánica 3/2007 para la igualdad efectiva de mujeres y hombres
 
 Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres (2007)
 
@@ -627,7 +626,7 @@ A los efectos de lo dispuesto en el párrafo anterior, el órgano judicial, a in
 
 2. Lo establecido en el apartado anterior no será de aplicación a los procesos penales.
 
-## Ley 4/2023
+## Ley 4/2023 para la igualdad real y efectiva de las personas trans y para la garantía de los derechos LGTBI
 
 Ley 4/2023, de 28 de febrero, para la igualdad real y efectiva de las personas trans y para la garantía de los derechos de las personas LGTBI (2023)
 
@@ -656,3 +655,5 @@ Las Administraciones públicas, en el ámbito de sus competencias, garantizarán
 ### Documentación administrativa
 
 Las Administraciones públicas competentes adoptarán las medidas necesarias para procurar que la documentación administrativa y los formularios sean adecuados a la diversidad en materia de orientación sexual, identidad sexual, expresión de género y características sexuales y a la diversidad familiar.
+
+

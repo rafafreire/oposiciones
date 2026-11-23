@@ -1,8 +1,8 @@
-# Tema 7: Derecho de la UE: Tratado UE, TFUE y actos jurídicos
+﻿# Tema 7: Derecho de la UE: Tratado UE, TFUE y actos jurídicos
 
 El Tratado de la Unión Europea: Disposiciones comunes. El Tratado de Funcionamiento de la Unión Europea: actos jurídicos de la Unión, procedimientos de adopción y otras disposiciones.
 
-## TUE
+## Tratado de la Unión Europea (TUE)
 
 Tratado de la Unión Europea (2009)
 
@@ -101,7 +101,7 @@ Las obligaciones del Estado miembro de que se trate derivadas de los Tratados co
 
 2.   A efectos del apartado 1, la Unión podrá celebrar acuerdos específicos con dichos países. Estos acuerdos podrán incluir derechos y obligaciones recíprocos, así como la posibilidad de realizar acciones en común. Su aplicación será objeto de una concertación periódica.
 
-## TFUE
+## Tratado de Funcionamiento de la Unión Europea (TFUE)
 
 Tratado de Funcionamiento de la Unión Europea (2009)
 
@@ -268,3 +268,4 @@ La ejecución forzosa se regirá por las normas de procedimiento civil vigentes 
 Cumplidas estas formalidades a instancia del interesado, éste podrá promover la ejecución forzosa conforme al Derecho interno, recurriendo directamente al órgano competente.
 
 La ejecución forzosa sólo podrá ser suspendida en virtud de una decisión del Tribunal de Justicia de la Unión Europea. No obstante, el control de la conformidad a Derecho de las medidas de ejecución será competencia de las jurisdicciones nacionales.
+

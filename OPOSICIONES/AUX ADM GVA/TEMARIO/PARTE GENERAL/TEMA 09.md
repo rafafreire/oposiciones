@@ -1,8 +1,8 @@
-# Tema 9: Transparencia (Ley 19/2013) y protección de datos (LO 3/2018, LOPDGDD)
+﻿# Tema 9: Transparencia (Ley 19/2013) y protección de datos (LO 3/2018, LOPDGDD)
 
 Ley 19/2013 de transparencia: Título I, Cap. III Derecho de acceso a la información pública. LO 3/2018 LOPDGDD: Título I Disposiciones generales, Título II Principios, Título III Derechos de las personas.
 
-## Ley 19/2013
+## Ley 19/2013 de transparencia, acceso a la información pública y buen gobierno
 
 Ley 19/2013 de Transparencia, Acceso a la Información Pública y Buen Gobierno (2013)
 
@@ -222,7 +222,7 @@ El Presidente del Consejo de Transparencia y Buen Gobierno comunicará al Defens
 
 6. La competencia para conocer de dichas reclamaciones corresponderá al Consejo de Transparencia y Buen Gobierno, salvo en aquellos supuestos en que las Comunidades Autónomas atribuyan dicha competencia a un órgano específico, de acuerdo con lo establecido en la disposición adicional cuarta de esta Ley.
 
-## LO 3/2018
+## Ley Orgánica 3/2018 de protección de datos personales y garantía de los derechos digitales
 
 Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (2018)
 
@@ -447,3 +447,4 @@ El derecho a la portabilidad se ejercerá de acuerdo con lo establecido en el ar
 ### Derecho de oposición
 
 El derecho de oposición, así como los derechos relacionados con las decisiones individuales automatizadas, incluida la realización de perfiles, se ejercerán de acuerdo con lo establecido, respectivamente, en los artículos 21 y 22 del Reglamento (UE) 2016/679.
+
