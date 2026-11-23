@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import json
 import re
+import base64
+import unicodedata
 from pathlib import Path
 
 
@@ -58,6 +60,135 @@ ARTICLE_RE = re.compile(
     r"(\d{1,3}(?:\.\d{1,3}){0,3}[a-z]?)\b",
     re.IGNORECASE,
 )
+MATERIALS_B64 = ROOT / "js" / "age-materials.js"
+STOP_WORDS = set(
+    "el la los las un una unos unas de del al y o u en por para con que se su sus es son "
+    "ser como cual cuales quien quienes cuando donde si no a ante bajo cabe contra desde "
+    "durante entre hacia hasta mediante sobre tras este esta estos esas esos lo le les más "
+    "menos muy ya también según respecto opción opciones pregunta indique señale siguiente "
+    "siguientes conforme acuerdo artículo artículos ley leyes"
+    .split()
+)
+
+
+def topic_material(number: int) -> str:
+    """Read the same topic material used by the AGE study reader."""
+    if number <= 16:
+        path = ROOT / "OPOSICIONES" / "AUX ADM AGE" / "TEMARIO" / "BLOQUE I" / f"TEMA {number:02}"
+        return path.read_text(encoding="utf-8-sig") if path.exists() else ""
+    filename = AGE_TOPIC_FILES.get(number)
+    if filename:
+        path = ROOT / "OPOSICIONES" / "AUX ADM AGE" / "TEMARIO" / "BLOQUE II" / Path(filename)
+        if path.exists():
+            return path.read_text(encoding="utf-8-sig")
+    # Topic 26 is embedded as base64 in the reader because it has no standalone file.
+    if number == 26 and MATERIALS_B64.exists():
+        source = MATERIALS_B64.read_text(encoding="utf-8")
+        payload = source.split("window.ageTopicMaterialsB64=", 1)[1].split(";", 1)[0]
+        return base64.b64decode(json.loads(payload)["26"]).decode("utf-8")
+    return ""
+
+
+def normalized_words(value: str) -> set[str]:
+    value = "".join(
+        char
+        for char in unicodedata.normalize("NFD", value.lower())
+        if unicodedata.category(char) != "Mn"
+    )
+    return {
+        word
+        for word in re.findall(r"[a-z0-9]+", value)
+        if len(word) > 2 and word not in STOP_WORDS
+    }
+
+
+def topic_articles(number: int) -> list[dict]:
+    """Index article cards in the order they appear in the study material."""
+    lines = topic_material(number).splitlines()
+    starts = []
+    for index, line in enumerate(lines):
+        match = re.match(r"^Art\.\s*([^\s:]+)", line.strip(), re.IGNORECASE)
+        if match and any("Hacer test Art." in previous for previous in lines[max(0, index - 2):index]):
+            starts.append((index, match.group(1).rstrip(".,")))
+
+    articles = []
+    for order, (start, number_text) in enumerate(starts):
+        end = starts[order + 1][0] if order + 1 < len(starts) else len(lines)
+        segment = lines[start + 1:end]
+        examen_index = next((i for i, line in enumerate(segment) if line.strip() == "Examen"), -1)
+        if examen_index >= 0:
+            segment = segment[examen_index + 1:]
+            if segment and re.fullmatch(r"\d+", segment[0].strip()):
+                segment = segment[1:]
+            while segment and re.match(r"^\s*(?:T[ií]tulo |Cap[ií]tulo |Art[ií]culos )", segment[0], re.IGNORECASE):
+                segment = segment[1:]
+        body = "\n".join(segment)
+        body = re.sub(r"(?m)^\s*(?:Elegir cu[aá]ntas|Hacer test.*|Examen|T[ií]tulo .*|Cap[ií]tulo .*?)\s*$", " ", body)
+        body = "\n".join(line.strip() for line in body.splitlines() if line.strip())
+        law_index = next(
+            (i for i in range(start - 1, -1, -1) if lines[i].strip().upper() == "LEY"),
+            -1,
+        )
+        law = " ".join(part.strip() for part in lines[law_index + 1:law_index + 3] if part.strip()) if law_index >= 0 else ""
+        numeric = re.match(r"\d+(?:\.\d+)*", number_text)
+        articles.append({
+            "numero": numeric.group(0) if numeric else number_text.lower(),
+            "orden": order,
+            "ley": law,
+            "texto": body,
+            "palabras": normalized_words(body),
+        })
+    return articles
+
+
+def select_article(question: dict, articles: list[dict]) -> tuple[dict | None, float]:
+    reference = question.get("referencia_tematica") or ""
+    match = ARTICLE_RE.search(reference)
+    answer = str(question.get("respuesta_correcta") or "")
+    option = (question.get("opciones") or {}).get(answer.upper()) or (question.get("opciones") or {}).get(answer.lower(), "")
+    query = normalized_words(str(option))
+    if match:
+        cited_number = match.group(1).split(".", 1)[0]
+        exact = [article for article in articles if article["numero"] == cited_number]
+        if exact:
+            best = max(exact, key=lambda article: len(query & article["palabras"]))
+            return best, 1.0
+    # Never infer an article number from textual similarity alone. Similar
+    # wording can occur in several laws and versions of the same provision.
+    return None, 0.0
+
+
+def generated_explanation(question: dict, article: dict | None) -> str:
+    answer = str(question.get("respuesta_correcta") or "").upper()
+    option = (question.get("opciones") or {}).get(answer) or (question.get("opciones") or {}).get(answer.lower())
+    if not answer or not option or article is None:
+        return ""
+    query = normalized_words((question.get("enunciado") or "") + " " + option)
+    paragraphs = []
+    for paragraph in article["texto"].splitlines():
+        paragraph = paragraph.strip()
+        if len(paragraph) <= 500:
+            candidates = [paragraph]
+        else:
+            candidates = re.split(r"(?<=[.;])\s+", paragraph)
+        paragraphs.extend(part.strip() for part in candidates if 35 <= len(part.strip()) <= 500)
+    matches = sorted(
+        ((len(query & normalized_words(part)), part) for part in paragraphs),
+        reverse=True,
+    )
+    if not matches or matches[0][0] < 4:
+        return ""
+    excerpt = matches[0][1].strip(" \t\n\r\"“” .;:")
+    repeated_prefix = excerpt[: min(80, len(excerpt) // 2)]
+    duplicate = excerpt.find(repeated_prefix, len(repeated_prefix)) if len(excerpt) > 100 else -1
+    if duplicate > 0:
+        excerpt = excerpt[:duplicate].rstrip()
+    if len(excerpt) > 280:
+        excerpt = excerpt[:277].rsplit(" ", 1)[0] + "…"
+    reference = question.get("referencia_tematica") or f"Artículo {article['numero']}"
+    law = article["ley"].removeprefix("CE ").strip()
+    law_reference = f" de la {law}" if law else ""
+    return f"El {reference}{law_reference} establece: «{excerpt}». Por ello, la opción {answer} es la correcta."
 
 
 def exam_name(path: Path) -> tuple[int, str]:
@@ -94,6 +225,7 @@ def main() -> None:
         for number, title in enumerate(TOPIC_TITLES, start=1)
     ]
     unassigned: list[dict] = []
+    article_index = {number: topic_articles(number) for number in range(1, len(TOPIC_TITLES) + 1)}
 
     for path in sorted(EXAMS.glob("EXAMEN_AUXADMAGE_*.json")):
         year, exam = exam_name(path)
@@ -105,6 +237,30 @@ def main() -> None:
                 reference, reference_type, reference_source = article_reference(
                     {**raw, "tema_numero": number}
                 )
+                question_context = {
+                    **raw,
+                    "tema_numero": number,
+                    "referencia_tematica": reference,
+                }
+                selected_article, _ = select_article(
+                    question_context, article_index.get(number, [])
+                ) if number is not None else (None, 0.0)
+                explanation = raw.get("explicacion") or ""
+                generated = False
+                if not explanation and raw.get("respuesta_correcta") and selected_article:
+                    explanation = generated_explanation(
+                        {**question_context, "referencia_tematica": reference}, selected_article
+                    )
+                    generated = bool(explanation)
+                elif not explanation and raw.get("respuesta_correcta") and reference_type == "articulo":
+                    answer = str(raw["respuesta_correcta"]).upper()
+                    option = (raw.get("opciones") or {}).get(answer) or (raw.get("opciones") or {}).get(answer.lower(), "")
+                    if option:
+                        explanation = (
+                            f"El enunciado remite al {reference}. La opción {answer} "
+                            f"(«{option}») responde al supuesto que plantea ese precepto."
+                        )
+                        generated = True
                 record = {
                     "numero": raw.get("numero"),
                     "tema_numero": number,
@@ -115,10 +271,17 @@ def main() -> None:
                     "enunciado": raw.get("enunciado", ""),
                     "opciones": raw.get("opciones", {}),
                     "respuesta_correcta": raw.get("respuesta_correcta"),
-                    "explicacion": raw.get("explicacion"),
+                    "estado_respuesta": raw.get("estado_respuesta", ""),
+                    "estado_plantilla_respuestas": raw.get("estado_plantilla_respuestas", ""),
+                    "fuente_plantilla_respuestas": raw.get("fuente_plantilla_respuestas", ""),
+                    "explicacion": explanation or None,
+                    "explicacion_generada": generated,
                     "referencia_tematica": reference,
                     "referencia_tematica_tipo": reference_type,
                     "referencia_tematica_origen": reference_source,
+                    "referencia_tematica_orden": selected_article["orden"] if selected_article else None,
+                    "referencia_tematica_confianza": round(article_score, 3) if selected_article else None,
+                    "referencia_normativa": selected_article["ley"] if selected_article else "",
                     "fuente_oficial": raw.get("fuente_oficial"),
                 }
                 if number is not None and 1 <= number <= len(topics):
@@ -132,7 +295,14 @@ def main() -> None:
 
     for topic in topics:
         topic["preguntas"].sort(
-            key=lambda q: (q["anio"], q["examen_origen"], q["numero_original"] or 0)
+            key=lambda q: (
+                q["referencia_tematica_tipo"] != "articulo",
+                q["referencia_tematica_orden"] if q["referencia_tematica_orden"] is not None else 10**6,
+                q["referencia_tematica"] if q["referencia_tematica_tipo"] == "articulo" else "",
+                q["anio"],
+                q["examen_origen"],
+                q["numero_original"] or 0,
+            )
         )
         topic["numero_preguntas"] = len(topic["preguntas"])
         for sequence, question in enumerate(topic["preguntas"], start=1):
@@ -145,7 +315,7 @@ def main() -> None:
     total = sum(topic["numero_preguntas"] for topic in topics) + len(unassigned)
     bank = {
         "convocatoria": "Auxiliar Administrativo AGE",
-        "orden": "Temario oficial por tema; preguntas agrupadas por tema y referencia normativa cuando consta expresamente en el enunciado o explicación",
+        "orden": "Por tema y en el orden de los artículos del material de estudio; las preguntas sin artículo identificable quedan al final de cada tema",
         "total_preguntas": total,
         "total_clasificadas": total - len(unassigned),
         "total_sin_tema": len(unassigned),
