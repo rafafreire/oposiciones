@@ -90,8 +90,8 @@ def main() -> None:
     parser.add_argument("--velocidad", default="+0%", help="Velocidad de voz, por ejemplo +10%% o -10%%.")
     args = parser.parse_args()
 
-    numbers = [args.tema] if args.tema is not None else list(range(1, 25))
-    if any(number < 1 or number > 24 for number in numbers):
+    numbers = [args.tema] if args.tema is not None else list(range(12, 25))
+    if any(number < 12 or number > 24 for number in numbers):
         parser.error("--tema debe estar entre 1 y 24")
 
     async def run_all() -> None:
