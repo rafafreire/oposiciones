@@ -64,5 +64,38 @@
 
     <p class="note">La carpeta contiene ilustraciones hasta el artículo 147. No hay láminas numeradas para los artículos 148–169.</p>
   </main>
+  <script>
+    const newIllustrations = [
+      ["CONST_056_091_SANCION_REFRENDO_PROMULGACION_PUBLICACION_ENTRADA_VIGOR.png", "Sanci&oacute;n, refrendo, promulgaci&oacute;n y publicaci&oacute;n", "Arts. 56&ndash;91", "La Corona y las leyes"],
+      ["CONST_071_inviolabilidad-inmunidad-aforamiento.png", "Inviolabilidad, inmunidad y aforamiento", "Art. 71", "Estatuto parlamentario"],
+      ["CONST_078_diputacion-permanente-decretos-leyes.png", "Diputaci&oacute;n Permanente y decretos leyes", "Arts. 78 y 86", "Cortes Generales"],
+      ["CONST_099_112_113_114_INVESTIDURA_MOCION_CENSURA_CONFIANZA.png", "Investidura, censura y confianza", "Arts. 99 y 112&ndash;114", "Gobierno y control parlamentario"],
+      ["CONST_112_113_MOCION_CENSURA_VS_CUESTION_CONFIANZA.png", "Moci&oacute;n de censura y cuesti&oacute;n de confianza", "Arts. 112&ndash;113", "Comparativa de procedimientos"],
+      ["CONST_116_ESTADOS_ALARMA_EXCEPCION_SITIO.png", "Estados de alarma, excepci&oacute;n y sitio", "Art. 116", "Estados excepcionales"],
+      ["CONST_148_149_COMPETENCIAS_ESTADO_CCAA.png", "Competencias del Estado y las comunidades aut&oacute;nomas", "Arts. 148&ndash;149", "Organizaci&oacute;n territorial"],
+      ["CONST_167_168_169_REFORMA_CONSTITUCIONAL_TITULO_X.png", "Reforma constitucional", "Arts. 167&ndash;169", "T&iacute;tulo X"],
+      ["CONST_167_168_REFORMA_CONSTITUCIONAL.png", "Procedimientos de reforma constitucional", "Arts. 167&ndash;168", "Mayor&iacute;as y refer&eacute;ndum"],
+      ["CONST_20_TRAMPAS_CONSITUCION.png", "20 trampas de la Constituci&oacute;n", "Repaso", "Errores habituales"],
+      ["CONST_59_60_REGENCIA_TUTELA_REY.png", "Regencia y tutela del Rey", "Arts. 59&ndash;60", "La Corona"],
+      ["CONST_5_CONCEPTOS_CONSTITUCION_QUE_USAS_MAL.png", "Cinco conceptos constitucionales que se usan mal", "Repaso", "Conceptos clave"],
+      ["CONST_COMPOSICION_CGPJ.png", "Composici&oacute;n del CGPJ", "Art. 122", "Poder Judicial"],
+      ["CONST_CONGRESO_VS_SENADO.png", "Congreso y Senado", "Arts. 66&ndash;80", "Cortes Generales"],
+      ["CONST_MAYORIAS_CONSTITUCIONALES.png", "Mayor&iacute;as constitucionales", "Varios art&iacute;culos", "Esquema de mayor&iacute;as"]
+    ];
+    const section = document.createElement("section");
+    section.className = "group";
+    section.id = "nuevas";
+    section.innerHTML = '<h2>Nuevas l&aacute;minas de repaso</h2><div class="grid"></div>';
+    const grid = section.querySelector(".grid");
+    grid.innerHTML = newIllustrations.map(([file, title, tag, detail]) => {
+      const url = `OPOSICIONES/IMAGENES/CONSTITUCION/${file}`;
+      return `<article class="card"><div class="card-head"><h3>${title}</h3><span class="tag">${tag}</span></div><a class="preview" href="${url}" target="_blank" rel="noopener"><img src="${url}" alt="${title}" loading="lazy"></a><div class="card-foot"><span>${detail}</span><a class="open" href="${url}" target="_blank" rel="noopener">Tama&ntilde;o completo &#8599;</a></div></article>`;
+    }).join("");
+    document.querySelector("main").append(section);
+    const note = document.querySelector(".note");
+    if (note) note.textContent = "Se incluyen láminas por artículos 1–169 y esquemas adicionales de repaso.";
+    const nav = document.querySelector(".range-nav");
+    if (nav) nav.insertAdjacentHTML("beforeend", '<a href="#nuevas">Nuevas l&aacute;minas</a>');
+  </script>
 </body>
 </html>
