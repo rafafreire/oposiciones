@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 527" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 4: Hojas de Cálculo (Excel 365 / LibreOffice Calc)</title>
+<desc id="desc">Infografía de repaso del tema 23, basada en Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#258b8b">TEMA 23 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#164847">Hojas de Cálculo (Excel 365 / LibreOffice Calc)</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013)</text>
+<rect x="28" y="148" width="944" height="314" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="220" width="928" height="154" rx="10" fill="#e9f5f3" /><rect x="36" y="220" width="5" height="154" rx="2.5" fill="#258b8b" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Extensiones: Excel (.xlsx) | Calc (.ods).</text>
+<circle cx="55" cy="202" r="5" fill="#4d9670" />
+<text x="73" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Referencias: Relativa (A1), Absoluta ($A$1 — se fija con F4 en Excel / Shift+F4 en</text>
+<text x="48" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">Calc), Mixta ($A1 o A$</tspan><tspan fill="#258b8b" font-weight="700">1</tspan><tspan fill="#18352a">).</tspan></text>
+<circle cx="55" cy="264" r="5" fill="#4d9670" />
+<text x="73" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Fórmulas clave en exámenes C2: Empiezan por =. : indica rango continuo; ; separa</text>
+<text x="48" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a">argumentos.</text>
+<circle cx="55" cy="326" r="5" fill="#4d9670" />
+<text x="73" y="333" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• =BUSCARV(valor_buscado; matriz_tabla; indicador_columnas; [rango]) (busca en la 1ª</text>
+<text x="48" y="364" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">columna izquierda; FALSO o </tspan><tspan fill="#258b8b" font-weight="700">0</tspan><tspan fill="#18352a"> = coincidencia exacta) y =BUSCARX(...).</tspan></text>
+<circle cx="55" cy="388" r="5" fill="#4d9670" />
+<text x="73" y="395" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• =CONTAR.SI(rango; criterio) y =SUMAR.SI(rango; criterio; [rango_suma]).</text>
+<circle cx="55" cy="419" r="5" fill="#4d9670" />
+<text x="73" y="426" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Errores: ##### (ancho insuficiente), #¡DIV/0!, #¿NOMBRE?, #¡REF!.</text>
+<text x="42" y="504" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#258b8b" opacity="0.16" /><rect x="894" y="59" width="48" height="32" rx="4" fill="#fff" stroke="#258b8b" stroke-width="3" /><path d="M914 92 V100 M906 101 H926" fill="none" stroke="#258b8b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="918" cy="75" r="6" fill="#258b8b" opacity="0.65" /></g></svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 713" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 1: Fechas clave y Estructura</title>
+<desc id="desc">Infografía de repaso del tema 1, basada en Constitución Española de 1978.</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#386f8f">TEMA 01 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#143b52">Fechas clave y Estructura</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Constitución Española de 1978</text>
+<rect x="28" y="148" width="944" height="500" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="344" width="928" height="154" rx="10" fill="#eaf3f8" /><rect x="36" y="344" width="5" height="154" rx="2.5" fill="#386f8f" /><rect x="36" y="499" width="928" height="92" rx="10" fill="#d7e8f1" /><rect x="36" y="499" width="5" height="92" rx="2.5" fill="#386f8f" /><rect x="36" y="592" width="928" height="30" rx="10" fill="#eaf3f8" /><rect x="36" y="592" width="5" height="30" rx="2.5" fill="#386f8f" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Las 4 fechas sagradas:</text>
+<circle cx="55" cy="202" r="5" fill="#4d9670" />
+<text x="73" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Aprobada por las Cortes Generales: 31 de octubre de 1978.</text>
+<circle cx="55" cy="233" r="5" fill="#4d9670" />
+<text x="73" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Ratificada en Referéndum: 6 de diciembre de 1978.</text>
+<circle cx="55" cy="264" r="5" fill="#4d9670" />
+<text x="73" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Sancionada y promulgada por el Rey: 27 de diciembre de 1978.</text>
+<circle cx="55" cy="295" r="5" fill="#4d9670" />
+<text x="73" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Publicada en el BOE y entrada en vigor: 29 de diciembre de 1978.</text>
+<circle cx="55" cy="326" r="5" fill="#4d9670" />
+<text x="73" y="333" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Estructura: 169 Artículos repartidos en un Preámbulo, un Título Preliminar y 10</text>
+<text x="48" y="364" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">Títulos, más </tspan><tspan fill="#386f8f" font-weight="700">4</tspan><tspan fill="#18352a"> Disposiciones Adicionales, </tspan><tspan fill="#386f8f" font-weight="700">9</tspan><tspan fill="#18352a"> Transitorias, </tspan><tspan fill="#386f8f" font-weight="700">1</tspan><tspan fill="#18352a"> Derogatoria y </tspan><tspan fill="#386f8f" font-weight="700">1</tspan><tspan fill="#18352a"> Final</tspan></text>
+<text x="48" y="395" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">(</tspan><tspan fill="#386f8f" font-weight="700">4</tspan><tspan fill="#18352a">-</tspan><tspan fill="#386f8f" font-weight="700">9</tspan><tspan fill="#18352a">-</tspan><tspan fill="#386f8f" font-weight="700">1</tspan><tspan fill="#18352a">-</tspan><tspan fill="#386f8f" font-weight="700">1</tspan><tspan fill="#18352a">).</tspan></text>
+<circle cx="55" cy="419" r="5" fill="#4d9670" />
+<text x="73" y="426" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Valores superiores (Art. 1.1): Libertad, justicia, igualdad y pluralismo político.</text>
+<circle cx="55" cy="450" r="5" fill="#4d9670" />
+<text x="73" y="457" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Principios del Art. 9.3 (Trampa habitual): Garantiza el principio de legalidad, la</text>
+<text x="48" y="488" font-family="Arial,sans-serif" font-size="17" fill="#18352a">jerarquía normativa (¡Ojo! En los test ponen como trampa "jerarquía reglamentaria", que</text>
+<text x="48" y="519" font-family="Arial,sans-serif" font-size="17" fill="#18352a">es falsa), la publicidad de las normas, la irretroactividad de las disposiciones</text>
+<text x="48" y="550" font-family="Arial,sans-serif" font-size="17" fill="#18352a">sancionadoras no favorables o restrictivas de derechos individuales, la seguridad</text>
+<text x="48" y="581" font-family="Arial,sans-serif" font-size="17" fill="#18352a">jurídica, la responsabilidad y la interdicción de la arbitrariedad de los poderes</text>
+<text x="48" y="612" font-family="Arial,sans-serif" font-size="17" fill="#18352a">públicos.</text>
+<text x="42" y="690" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#386f8f" opacity="0.16" /><path d="M891 73 L918 55 L945 73 Z" fill="#fff" stroke="#386f8f" stroke-width="3" stroke-linejoin="round" /><path d="M895 101 H941 M900 96 V77 M910 96 V77 M926 96 V77 M936 96 V77 M893 74 H943" fill="none" stroke="#386f8f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /></g></svg>

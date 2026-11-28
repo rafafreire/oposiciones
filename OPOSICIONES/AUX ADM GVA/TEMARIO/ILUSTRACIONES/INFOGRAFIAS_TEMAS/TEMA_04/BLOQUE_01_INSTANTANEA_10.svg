@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 496" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 10: Órganos de control y consulta</title>
+<desc id="desc">Infografía de repaso del tema 4, basada en Estatuto de Autonomía de la Comunitat Valenciana (LO 5/1982).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#c47a32">TEMA 04 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#563915">Órganos de control y consulta</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Estatuto de Autonomía de la Comunitat Valenciana (LO 5/1982)</text>
+<rect x="28" y="148" width="944" height="283" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="189" width="928" height="154" rx="10" fill="#fbf3e8" /><rect x="36" y="189" width="5" height="154" rx="2.5" fill="#c47a32" /><rect x="36" y="375" width="928" height="30" rx="10" fill="#f6e8d5" /><rect x="36" y="375" width="5" height="30" rx="2.5" fill="#c47a32" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Consell Jurídic Consultiu (CJC): Supremo órgano consultivo (emite dictámenes</text>
+<text x="48" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a">jurídicos).</text>
+<circle cx="55" cy="233" r="5" fill="#4d9670" />
+<text x="73" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Sindicatura de Comptes: Control económico y presupuestario (fiscaliza las cuentas de</text>
+<text x="48" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a">la Generalitat y entes locales).</text>
+<circle cx="55" cy="295" r="5" fill="#4d9670" />
+<text x="73" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Síndic de Greuges: Alto comisionado de Les Corts para la defensa de los derechos y</text>
+<text x="48" y="333" font-family="Arial,sans-serif" font-size="17" fill="#18352a">libertades (el "Defensor del Pueblo" valenciano).</text>
+<circle cx="55" cy="357" r="5" fill="#4d9670" />
+<text x="73" y="364" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Comité Econòmic i Social (CES): Órgano consultivo en materias económicas,</text>
+<text x="48" y="395" font-family="Arial,sans-serif" font-size="17" fill="#18352a">sociolaborales y de empleo.</text>
+<text x="42" y="473" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#c47a32" opacity="0.16" /><path d="M891 73 L918 55 L945 73 Z" fill="#fff" stroke="#c47a32" stroke-width="3" stroke-linejoin="round" /><path d="M895 101 H941 M900 96 V77 M910 96 V77 M926 96 V77 M936 96 V77 M893 74 H943" fill="none" stroke="#c47a32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /></g></svg>

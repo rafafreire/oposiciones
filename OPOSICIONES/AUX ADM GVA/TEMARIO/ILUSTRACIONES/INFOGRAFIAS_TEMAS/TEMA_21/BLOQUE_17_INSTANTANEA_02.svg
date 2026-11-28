@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 403" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 2: Windows 10 y Windows 11 (Atajos Clave — Convocatoria 70/26)</title>
+<desc id="desc">Infografía de repaso del tema 21, basada en Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#7d63a8">TEMA 21 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#3c2f57">Windows 10 y Windows 11 (Atajos Clave — Convocatoria 70/26)</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013)</text>
+<rect x="28" y="148" width="944" height="190" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="189" width="928" height="123" rx="10" fill="#f3eff8" /><rect x="36" y="189" width="5" height="123" rx="2.5" fill="#7d63a8" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Win + E: Explorador | Win + D: Escritorio | Win + L: Bloquear equipo | Win + I:</text>
+<text x="48" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a">Configuración | Win + Shift + S: Recortes | Alt + Tab: Cambiar ventana | Alt + F4:</text>
+<text x="48" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a">Cerrar | F2: Cambiar nombre | Shift + Supr: Eliminar permanentemente sin papelera.</text>
+<circle cx="55" cy="264" r="5" fill="#4d9670" />
+<text x="73" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Novedades Windows 11: Win + Z (Snap Layouts / diseños de acoplamiento), Win + W</text>
+<text x="48" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a">(Widgets), Win + V (historial del portapapeles) y Win + A (configuración rápida).</text>
+<text x="42" y="380" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#7d63a8" opacity="0.16" /><rect x="894" y="59" width="48" height="32" rx="4" fill="#fff" stroke="#7d63a8" stroke-width="3" /><path d="M914 92 V100 M906 101 H926" fill="none" stroke="#7d63a8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="918" cy="75" r="6" fill="#7d63a8" opacity="0.65" /></g></svg>

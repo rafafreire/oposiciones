@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 279" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 4: Estructura del Presupuesto de Ingresos (Doble Clasificación)</title>
+<desc id="desc">Infografía de repaso del tema 17, basada en Hacienda Pública, Presupuestos y Contratación (Ley 1/2015 y Ley 9/2017).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2"/>
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6"/>
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670"/>
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#43765a">TEMA 17 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#173b2b">Estructura del Presupuesto de Ingresos (Doble Clasificación)</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Hacienda Pública, Presupuestos y Contratación (Ley 1/2015 y Ley 9/2017)</text>
+<rect x="28" y="148" width="944" height="66" rx="16" fill="#ffffff" stroke="#d7e5d9"/>
+<circle cx="55" cy="171" r="5" fill="#4d9670"/>
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Solo tiene clasificación Orgánica y Económica (NO tiene clasificación por programas).</text>
+<text x="42" y="256" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+</svg>

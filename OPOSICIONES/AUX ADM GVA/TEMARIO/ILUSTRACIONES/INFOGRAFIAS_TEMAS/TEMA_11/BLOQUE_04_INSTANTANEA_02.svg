@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 713" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 2: El Cómputo de Plazos (Art. 30)</title>
+<desc id="desc">Infografía de repaso del tema 11, basada en Procedimiento Administrativo Común (Ley 39/2015, de 1 de octubre).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#258b8b">TEMA 11 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#164847">El Cómputo de Plazos (Art. 30)</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Procedimiento Administrativo Común (Ley 39/2015, de 1 de octubre)</text>
+<rect x="28" y="148" width="944" height="500" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="189" width="928" height="123" rx="10" fill="#e9f5f3" /><rect x="36" y="189" width="5" height="123" rx="2.5" fill="#258b8b" /><rect x="36" y="313" width="928" height="154" rx="10" fill="#d9eeeb" /><rect x="36" y="313" width="5" height="154" rx="2.5" fill="#258b8b" /><rect x="36" y="499" width="928" height="123" rx="10" fill="#e9f5f3" /><rect x="36" y="499" width="5" height="123" rx="2.5" fill="#258b8b" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Por HORAS: Son hábiles todas las horas del día que formen parte de un día hábil. Se</text>
+<text x="48" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">cuentan de hora en hora y de minuto en minuto (no pueden tener duración superior a </tspan><tspan fill="#258b8b" font-weight="700">24</tspan></text>
+<text x="48" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a">horas; si la tienen, se expresan en días).</text>
+<circle cx="55" cy="264" r="5" fill="#4d9670" />
+<text x="73" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Por DÍAS: Siempre que no se exprese otra cosa, se entiende que son DÍAS HÁBILES (se</text>
+<text x="48" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a">excluyen sábados, domingos y festivos). Se empiezan a contar a partir del día siguiente</text>
+<text x="48" y="333" font-family="Arial,sans-serif" font-size="17" fill="#18352a">a la notificación/publicación.</text>
+<circle cx="55" cy="357" r="5" fill="#4d9670" />
+<text x="73" y="364" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Por MESES o AÑOS: Se cuentan de fecha a fecha a partir del día siguiente a la</text>
+<text x="48" y="395" font-family="Arial,sans-serif" font-size="17" fill="#18352a">notificación.</text>
+<circle cx="55" cy="419" r="5" fill="#4d9670" />
+<text x="73" y="426" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Ejemplo: Notificación el 15 de enero (plazo 1 mes) -&gt; Empieza a contar el 16 de enero,</text>
+<text x="48" y="457" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">pero vence el </tspan><tspan fill="#258b8b" font-weight="700">15</tspan><tspan fill="#18352a"> de febrero (mismo número de día del mes siguiente).</tspan></text>
+<circle cx="55" cy="481" r="5" fill="#4d9670" />
+<text x="73" y="488" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• ¿Y si no hay día equivalente? (Ej. Notifican el 31 de enero y el plazo es 1 mes):</text>
+<text x="48" y="519" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">Vence el último día del mes (</tspan><tspan fill="#258b8b" font-weight="700">28</tspan><tspan fill="#18352a"> o </tspan><tspan fill="#258b8b" font-weight="700">29</tspan><tspan fill="#18352a"> de febrero).</tspan></text>
+<circle cx="55" cy="543" r="5" fill="#4d9670" />
+<text x="73" y="550" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• ¿Y si el último día es inhábil? Se prorroga al primer día hábil siguiente.</text>
+<circle cx="55" cy="574" r="5" fill="#4d9670" />
+<text x="73" y="581" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Truco: En días = excluye fines de semana y festivos. En meses/años = no se descuentan</text>
+<text x="48" y="612" font-family="Arial,sans-serif" font-size="17" fill="#18352a">fines de semana ni festivos (solo importa si cae en inhábil el último día).</text>
+<text x="42" y="690" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#258b8b" opacity="0.16" /><path d="M891 73 L918 55 L945 73 Z" fill="#fff" stroke="#258b8b" stroke-width="3" stroke-linejoin="round" /><path d="M895 101 H941 M900 96 V77 M910 96 V77 M926 96 V77 M936 96 V77 M893 74 H943" fill="none" stroke="#258b8b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /></g></svg>

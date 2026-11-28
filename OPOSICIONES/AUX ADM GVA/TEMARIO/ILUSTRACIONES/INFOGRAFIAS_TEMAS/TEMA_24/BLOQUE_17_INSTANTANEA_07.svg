@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 527" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 7: Seguridad Informática en la Generalitat (Orden 19/2013 y ENS)</title>
+<desc id="desc">Infografía de repaso del tema 24, basada en Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#b65a70">TEMA 24 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#512b35">Seguridad Informática en la Generalitat (Orden 19/2013 y ENS)</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013)</text>
+<rect x="28" y="148" width="944" height="314" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="189" width="928" height="92" rx="10" fill="#fbf0f2" /><rect x="36" y="189" width="5" height="92" rx="2.5" fill="#b65a70" /><rect x="36" y="313" width="928" height="123" rx="10" fill="#f5e2e7" /><rect x="36" y="313" width="5" height="123" rx="2.5" fill="#b65a70" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Orden 19/2013 (Normas de seguridad GVA): Política de mesas limpias y bloqueo</text>
+<text x="48" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a">obligatorio de pantalla (Win + L) al ausentarse; contraseñas personales e</text>
+<text x="48" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a">intransferibles; prohibición de conectar dispositivos USB personales no autorizados o</text>
+<text x="48" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a">instalar software sin permiso de la DGTIC.</text>
+<circle cx="55" cy="295" r="5" fill="#4d9670" />
+<text x="73" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Malware y Backups: Virus, Gusano (se autorreplica), Troyano, Ransomware</text>
+<text x="48" y="333" font-family="Arial,sans-serif" font-size="17" fill="#18352a">(secuestra/cifra datos), Phishing. Backups: Completa, Incremental (desde la última copia</text>
+<text x="48" y="364" font-family="Arial,sans-serif" font-size="17" fill="#18352a">de cualquier tipo) y Diferencial (desde la última completa).</text>
+<circle cx="55" cy="388" r="5" fill="#4d9670" />
+<text x="73" y="395" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Firma en GVA: ACCV (Autoritat de Certificació de la Comunitat Valenciana) y sistema</text>
+<text x="48" y="426" font-family="Arial,sans-serif" font-size="17" fill="#18352a">Cl@ve.</text>
+<text x="42" y="504" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#b65a70" opacity="0.16" /><path d="M918 55 L940 63 V79 C940 92 931 101 918 107 C905 101 896 92 896 79 V63 Z" fill="#fff" stroke="#b65a70" stroke-width="3" /><path d="M907 80 L915 88 L930 71" fill="none" stroke="#b65a70" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /></g></svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 496" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 2: Grupos y Subgrupos Profesionales (Art. 36)</title>
+<desc id="desc">Infografía de repaso del tema 15, basada en Ley de la Función Pública Valenciana (Ley 4/2021, de 16 de abril).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#7d63a8">TEMA 15 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#3c2f57">Grupos y Subgrupos Profesionales (Art. 36)</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Ley de la Función Pública Valenciana (Ley 4/2021, de 16 de abril)</text>
+<rect x="28" y="148" width="944" height="283" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="313" width="928" height="92" rx="10" fill="#f3eff8" /><rect x="36" y="313" width="5" height="92" rx="2.5" fill="#7d63a8" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Grupo A: Se divide en A1 y A2. Exige título universitario de Grado.</text>
+<circle cx="55" cy="202" r="5" fill="#4d9670" />
+<text x="73" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Grupo B: Exige título de Técnico Superior (FP Superior). (No tiene subgrupos).</text>
+<circle cx="55" cy="233" r="5" fill="#4d9670" />
+<text x="73" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Grupo C: Se divide en C1 y C2:</text>
+<circle cx="55" cy="264" r="5" fill="#4d9670" />
+<text x="73" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• C1: Título de Bachiller o Técnico (FP Medio).</text>
+<circle cx="55" cy="295" r="5" fill="#4d9670" />
+<text x="73" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• C2 (Auxiliar Administrativo): Título de Graduado en Educación Secundaria Obligatoria</text>
+<text x="48" y="333" font-family="Arial,sans-serif" font-size="17" fill="#18352a">(ESO).</text>
+<circle cx="55" cy="357" r="5" fill="#4d9670" />
+<text x="73" y="364" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Truco: El Grupo B va solo (sin B1 ni B2). Los únicos que se parten en "1 y 2" son el A</text>
+<text x="48" y="395" font-family="Arial,sans-serif" font-size="17" fill="#18352a">y el C.</text>
+<text x="42" y="473" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#7d63a8" opacity="0.16" /><path d="M918 56 L941 65 V80 C941 94 931 103 918 109 C905 103 895 94 895 80 V65 Z" fill="#fff" stroke="#7d63a8" stroke-width="3" /><path d="M907 81 L915 89 L930 72" fill="none" stroke="#7d63a8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /></g></svg>

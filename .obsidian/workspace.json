@@ -1,0 +1,240 @@
+{
+  "main": {
+    "id": "34b83ca0db94e6d4",
+    "type": "split",
+    "children": [
+      {
+        "id": "1084b2b9ddbc7d80",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9324ebf9d01684b9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/instantaneas_oposicion_auxiliar_gva_v2.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "instantaneas_oposicion_auxiliar_gva_v2"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "46e97a7fd9894905",
+    "type": "split",
+    "children": [
+      {
+        "id": "9dd93e610272ab0a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2260801df5cd5253",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de archivos"
+            }
+          },
+          {
+            "id": "5efb633dcf177a69",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Buscar"
+            }
+          },
+          {
+            "id": "cbf358391f4be5be",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 430.5
+  },
+  "right": {
+    "id": "51b967ce1258fbde",
+    "type": "split",
+    "children": [
+      {
+        "id": "e4aa3e8e95fb8044",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "00fc159ca934dafa",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/instantaneas_oposicion_auxiliar_gva_v2.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Enlaces entrantes"
+            }
+          },
+          {
+            "id": "bd8dbaa54e95ebee",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/instantaneas_oposicion_auxiliar_gva_v2.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enlaces salientes"
+            }
+          },
+          {
+            "id": "e89b73b5204896da",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "08e12908da8a7394",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas las propiedades"
+            }
+          },
+          {
+            "id": "d59d35b3c9146ca8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/instantaneas_oposicion_auxiliar_gva_v2.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false
+    }
+  },
+  "active": "9324ebf9d01684b9",
+  "lastOpenFiles": [
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_14/BLOQUE_12_INSTANTANEA_08.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_14",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_11/BLOQUE_04_INSTANTANEA_05.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_11/BLOQUE_04_INSTANTANEA_04.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_11/BLOQUE_04_INSTANTANEA_01.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_11/BLOQUE_04_INSTANTANEA_03.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_11/BLOQUE_04_INSTANTANEA_02.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_11",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_07/BLOQUE_10_INSTANTANEA_06.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_07/BLOQUE_10_INSTANTANEA_04.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_07/BLOQUE_10_INSTANTANEA_03.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_07/BLOQUE_10_INSTANTANEA_05.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_07/BLOQUE_10_INSTANTANEA_02.svg",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_07",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_06",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_16.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_15.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_13.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_20.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_10.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_14.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_09.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_05.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_11.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_06.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_07.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/INDICE.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_24.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_24",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_23.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_23",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_22.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_22",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_21.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_21",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_20",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_19.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_19",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_18.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_17.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_12.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_08.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_04.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_03.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_02.md",
+    "OPOSICIONES/AUX ADM GVA/TEMARIO/ILUSTRACIONES/INFOGRAFIAS_TEMAS/TEMA_01.md"
+  ]
+}

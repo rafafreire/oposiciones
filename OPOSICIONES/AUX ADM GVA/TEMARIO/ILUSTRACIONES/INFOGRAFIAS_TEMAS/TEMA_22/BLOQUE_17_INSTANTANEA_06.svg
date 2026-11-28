@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 589" role="img" aria-labelledby="title desc">
+<title id="title">Instantánea 6: Internet, Correo (Outlook 365), Teams e IA Generativa (Orden 9/2026)</title>
+<desc id="desc">Infografía de repaso del tema 22, basada en Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013).</desc>
+<rect width="1000" height="100%" rx="24" fill="#f3f7f2" />
+<path d="M24 24h952a16 16 0 0 1 16 16v92H8V40A16 16 0 0 1 24 24Z" fill="#e3efe6" />
+<rect x="0" y="24" width="10" height="108" rx="5" fill="#4d9670" />
+<text x="42" y="61" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#c47a32">TEMA 22 · INFOGRAFÍA DE REPASO</text>
+<text x="42" y="103" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#563915">Internet, Correo (Outlook 365), Teams e IA Generativa (Orden 9/2026)</text>
+<text x="42" y="158" font-family="Arial,sans-serif" font-size="14" fill="#466052">Informática, Ofimática 365 y Seguridad en la GVA (Orden 9/2026 y Orden 19/2013)</text>
+<rect x="28" y="148" width="944" height="376" rx="16" fill="#ffffff" stroke="#d7e5d9" />
+<rect x="36" y="189" width="928" height="123" rx="10" fill="#fbf3e8" /><rect x="36" y="189" width="5" height="123" rx="2.5" fill="#c47a32" /><rect x="36" y="313" width="928" height="154" rx="10" fill="#f6e8d5" /><rect x="36" y="313" width="5" height="154" rx="2.5" fill="#c47a32" /><rect x="36" y="468" width="928" height="30" rx="10" fill="#fbf3e8" /><rect x="36" y="468" width="5" height="30" rx="2.5" fill="#c47a32" /><circle cx="55" cy="171" r="5" fill="#4d9670" />
+<text x="73" y="178" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Protocolos: HTTPS (web segura), SFTP (archivos), SMTP (enviar correo), POP3 (descargar</text>
+<text x="48" y="209" font-family="Arial,sans-serif" font-size="17" fill="#18352a">correo) e IMAP (sincronizar correo en servidor).</text>
+<circle cx="55" cy="233" r="5" fill="#4d9670" />
+<text x="73" y="240" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Outlook 365: Ctrl + N / Ctrl + Mayús + M (nuevo mensaje), Ctrl + R (responder), Ctrl +</text>
+<text x="48" y="271" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">Mayús + R (responder a todos), Ctrl + F (reenviar), Ctrl + </tspan><tspan fill="#c47a32" font-weight="700">1</tspan><tspan fill="#18352a"> (Correo), Ctrl + </tspan><tspan fill="#c47a32" font-weight="700">2</tspan></text>
+<text x="48" y="302" font-family="Arial,sans-serif" font-size="17" fill="#18352a"><tspan fill="#18352a">(Calendario), Ctrl + </tspan><tspan fill="#c47a32" font-weight="700">3</tspan><tspan fill="#18352a"> (Contactos). Uso obligatorio de CCO (copia oculta) en envíos</tspan></text>
+<text x="48" y="333" font-family="Arial,sans-serif" font-size="17" fill="#18352a">masivos por Protección de Datos.</text>
+<circle cx="55" cy="357" r="5" fill="#4d9670" />
+<text x="73" y="364" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• Microsoft Teams: Equipos divididos en Canales (Estándar, Privados, Compartidos). Ctrl</text>
+<text x="48" y="395" font-family="Arial,sans-serif" font-size="17" fill="#18352a">+ Mayús + M (silenciar micrófono) y Ctrl + Mayús + O (cámara).</text>
+<circle cx="55" cy="419" r="5" fill="#4d9670" />
+<text x="73" y="426" font-family="Arial,sans-serif" font-size="17" fill="#18352a">• IA Generativa: Prompt (instrucción al modelo) y alucinaciones (datos falsos generados</text>
+<text x="48" y="457" font-family="Arial,sans-serif" font-size="17" fill="#18352a">por la IA; requiere siempre supervisión humana y prohibición de introducir datos</text>
+<text x="48" y="488" font-family="Arial,sans-serif" font-size="17" fill="#18352a">personales/confidenciales en herramientas públicas).</text>
+<text x="42" y="566" font-family="Arial,sans-serif" font-size="12" fill="#60766a">Auxiliar Administrativo GVA · Claves tomadas de la instantánea original</text>
+<g aria-hidden="true"><circle cx="918" cy="80" r="34" fill="#ffffff" opacity="0.92" /><circle cx="918" cy="80" r="29" fill="#c47a32" opacity="0.16" /><rect x="894" y="59" width="48" height="32" rx="4" fill="#fff" stroke="#c47a32" stroke-width="3" /><path d="M914 92 V100 M906 101 H926" fill="none" stroke="#c47a32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="918" cy="75" r="6" fill="#c47a32" opacity="0.65" /></g></svg>
