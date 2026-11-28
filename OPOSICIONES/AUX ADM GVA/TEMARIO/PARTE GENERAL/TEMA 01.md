@@ -6,12 +6,13 @@ La Constitución Española de 1978: Título Preliminar; Título I, De los derech
 
 Imágenes ordenadas por los artículos que abarcan. Pulsa un rango para abrir la ilustración.
 
-| Artículos | Ilustración | Artículos | Ilustración |
-|---|---|---|---|
-| 1–9 | [Abrir imagen](../ILUSTRACIONES/CONST/CONST_001_009.jpg) | 10–14 | [Abrir imagen](../ILUSTRACIONES/CONST/CONST_010_014.jpg) |
-| 15–29 | [Abrir imagen](../ILUSTRACIONES/CONST/CONST_015_029.jpg) | 30–38 | [Abrir imagen](../ILUSTRACIONES/CONST/CONST_030_038.jpg) |
-| 39–52 | [Abrir imagen](../ILUSTRACIONES/CONST/CONST_039_052.jpg) | 53–55 | [Abrir imagen](../ILUSTRACIONES/CONST/CONST_053_055.jpg) |
-| 137–147 | [Abrir imagen](../ILUSTRACIONES/CONST/CONST_137_147.jpg) |  |  |
+- [Artículos 1–9 · Abrir ilustración](../ILUSTRACIONES/CONST/CONST_001_009.jpg)
+- [Artículos 10–14 · Abrir ilustración](../ILUSTRACIONES/CONST/CONST_010_014.jpg)
+- [Artículos 15–29 · Abrir ilustración](../ILUSTRACIONES/CONST/CONST_015_029.jpg)
+- [Artículos 30–38 · Abrir ilustración](../ILUSTRACIONES/CONST/CONST_030_038.jpg)
+- [Artículos 39–52 · Abrir ilustración](../ILUSTRACIONES/CONST/CONST_039_052.jpg)
+- [Artículos 53–55 · Abrir ilustración](../ILUSTRACIONES/CONST/CONST_053_055.jpg)
+- [Artículos 137–147 · Abrir ilustración](../ILUSTRACIONES/CONST/CONST_137_147.jpg)
 
 ## Constitución Española de 1978
 
