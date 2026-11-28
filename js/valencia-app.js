@@ -112,9 +112,16 @@ function valenciaSetView(name) {
 
 document.querySelectorAll('[data-vlc-view]').forEach(button => button.addEventListener('click', () => valenciaSetView(button.dataset.vlcView)));
 document.querySelectorAll('[data-vlc-go]').forEach(button => button.addEventListener('click', () => valenciaSetView(button.dataset.vlcGo)));
+if (![...$vlc('#opposition-switch-valencia').options].some(option => option.value === 'admin-age')) {
+  const administrativeOption = document.createElement('option');
+  administrativeOption.value = 'admin-age';
+  administrativeOption.textContent = 'Administrativo AGE';
+  $vlc('#opposition-switch-valencia').append(administrativeOption);
+}
 $vlc('#opposition-switch-valencia').addEventListener('change', event => {
   if (event.target.value === 'gva') window.location.href = 'index.html';
   if (event.target.value === 'age') window.location.href = 'age.html';
+  if (event.target.value === 'admin-age') window.location.href = 'admin-age.html';
   if (event.target.value === 'gsi-age') window.location.href = 'gsi-age.html';
 });
 

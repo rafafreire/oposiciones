@@ -1,0 +1,12 @@
+{
+  "resources": [
+    { "title": "Programa oficial 2025 · Anexo III", "path": "OPOSICIONES/ADMIN AGE/TEMARIO/temario-2025.json" },
+    { "title": "Banco de preguntas oficiales · modelos A y B", "path": "OPOSICIONES/ADMIN AGE/EXAMENES/preguntas-2025.json" },
+    { "title": "Plantillas provisionales · modelos A y B", "path": "OPOSICIONES/ADMIN AGE/EXAMENES/respuestas-2025.json" },
+    { "title": "Cuestionario oficial · modelo A PDF", "path": "OPOSICIONES/ADMIN AGE/EXAMENES/ADVO_2025_A.pdf" },
+    { "title": "Cuestionario oficial · modelo B PDF", "path": "OPOSICIONES/ADMIN AGE/EXAMENES/ADVO_2025_B.pdf" },
+    { "title": "Plantilla provisional · modelo A PDF", "path": "OPOSICIONES/ADMIN AGE/EXAMENES/ADVO_2025_A_respuestas_provisionales.pdf" },
+    { "title": "Plantilla provisional · modelo B PDF", "path": "OPOSICIONES/ADMIN AGE/EXAMENES/ADVO_2025_B_respuestas_provisionales.pdf" },
+    { "title": "Convocatoria oficial 2025 · Anexo III PDF", "path": "OPOSICIONES/ADMIN AGE/EXAMENES/ADVO_2025_convocatoria_anexo_III.pdf" }
+  ]
+}

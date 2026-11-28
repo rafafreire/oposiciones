@@ -286,10 +286,17 @@ document.querySelectorAll('[data-gsi-view]').forEach(button => {
 document.querySelectorAll('[data-gsi-go]').forEach(button => {
   button.addEventListener('click', () => gsiView(button.dataset.gsiGo));
 });
+if (![...$gsi('#opposition-switch-gsi').options].some(option => option.value === 'admin-age')) {
+  const administrativeOption = document.createElement('option');
+  administrativeOption.value = 'admin-age';
+  administrativeOption.textContent = 'Administrativo AGE';
+  $gsi('#opposition-switch-gsi').append(administrativeOption);
+}
 $gsi('#opposition-switch-gsi').addEventListener('change', event => {
   const destinations = {
     gva: 'index.html',
     age: 'age.html',
+    'admin-age': 'admin-age.html',
     valencia: 'valencia.html',
     'gsi-age': 'gsi-age.html'
   };

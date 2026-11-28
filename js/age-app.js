@@ -48,7 +48,7 @@ function ageSave(s){localStorage.setItem(AGE_KEY,JSON.stringify(s));ageRenderSta
 function ageView(name){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active-view'));$age(`#age-view-${name}`).classList.add('active-view');document.querySelectorAll('[data-age-view]').forEach(x=>x.classList.toggle('active',x.dataset.ageView===name));if(name==='fallos')ageRenderReview();window.scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('[data-age-view]').forEach(button=>button.addEventListener('click',()=>ageView(button.dataset.ageView)));
 document.querySelectorAll('[data-age-go]').forEach(button=>button.addEventListener('click',()=>ageView(button.dataset.ageGo)));
-$age('#opposition-switch-age').addEventListener('change',event=>{if(event.target.value==='gva')window.location.href='index.html'});
+$age('#opposition-switch-age').addEventListener('change',event=>{if(event.target.value==='gva')window.location.href='index.html';if(event.target.value==='admin-age')window.location.href='admin-age.html'});
 function ageProgress(s,n){return s.topicProgress?.[n]||{status:'pending',rating:0}}
 function ageRenderStats(){const s=ageState(),done=ageTopics.filter(t=>ageProgress(s,t.n).status==='done').length;$age('#age-topics-done').textContent=done;$age('#age-topic-progress').style.width=`${done/ageTopics.length*100}%`;$age('#age-answered-count').textContent=s.stats.answered;$age('#age-correct-count').textContent=s.stats.correct;$age('#age-missed-count').textContent=s.wrong.length;$age('#age-error-badge').textContent=s.wrong.length;const pending=ageTopics.filter(t=>ageProgress(s,t.n).status!=='done');$age('#age-remaining').innerHTML=pending.length?`<p>Te quedan <strong>${pending.length} temas</strong> por completar:</p><ul>${pending.slice(0,6).map(t=>`<li>Tema ${String(t.n).padStart(2,'0')} · ${t.title} <span>${ageProgress(s,t.n).status==='progress'?'En curso':'Pendiente'}</span></li>`).join('')}</ul>${pending.length>6?`<small>y ${pending.length-6} más</small>`:''}`:'<p class="all-topics-done">✓ Has completado todos los temas.</p>'}
 function ageRenderTopics(){
@@ -199,6 +199,12 @@ $age('#age-start-exam').addEventListener('click',()=>ageStart($age('#age-exam-se
 ageRenderTopics();ageRenderStats();
 
 const ageOppositionSwitch = document.querySelector('#opposition-switch-age');
+if (ageOppositionSwitch && ![...ageOppositionSwitch.options].some(option => option.value === 'admin-age')) {
+  const administrativeOption = document.createElement('option');
+  administrativeOption.value = 'admin-age';
+  administrativeOption.textContent = 'Administrativo AGE';
+  ageOppositionSwitch.append(administrativeOption);
+}
 if (ageOppositionSwitch && ![...ageOppositionSwitch.options].some(option => option.value === 'valencia')) {
   const valenciaOption = document.createElement('option');
   valenciaOption.value = 'valencia';

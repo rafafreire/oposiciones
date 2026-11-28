@@ -8,7 +8,9 @@ Abre `index.html` en el navegador. No requiere instalación. El avance se guarda
 
 ## Incluye
 
-- Selector entre las oposiciones GVA, AGE, Ayuntamiento de València y Gestión de Sistemas e Informática AGE, con progreso separado para cada una.
+- Selector entre las oposiciones GVA, Auxiliar AGE, Administrativo AGE, Ayuntamiento de València y Gestión de Sistemas e Informática AGE, con progreso separado para cada una.
+- Preparación del Cuerpo General Administrativo AGE (C1), ingreso libre, con el programa de 45 temas de la convocatoria 2026 y progreso independiente.
+- Temario archivado de la convocatoria 2025, cuestionarios oficiales modelos A y B en JSON, plantillas provisionales en JSON y PDF.
 - Los 24 temas del Anexo IV de GVA, agrupados en parte general y especial.
 - Temario AGE para los 28 temas, con visor de lectura y apuntes locales de los bloques I y II.
 - Programa oficial GSI AGE de ingreso libre (OEP 2025), con 57 temas en cuatro bloques, doce cuestionarios históricos en JSON y plantillas INAP de 2008, 2011, 2013, 2018, 2019, 2022 y 2024.
@@ -22,13 +24,15 @@ Abre `index.html` en el navegador. No requiere instalación. El avance se guarda
 - Repaso de fallos y diseño adaptable a móvil y escritorio.
 - Lectura en voz alta de las preguntas y sus opciones mediante la voz del navegador.
 
-Las preguntas de práctica son material didáctico, no preguntas oficiales. Los cuestionarios de años anteriores se muestran aparte y corresponden a convocatorias anteriores; conviene contrastar las normas con el programa vigente. El programa oficial AGE se enlaza desde el BOE. El visor usa los apuntes de los bloques I y II; el tema 26 conserva la ficha de repaso al no haber un archivo completo de Access en BLOQUE II. El archivo TEMA 24 de ese bloque duplica el contenido del tema 23, así que Word y Excel se asocian a sus apuntes por el título interno. La carpeta ADMIN AGE corresponde a otro cuerpo. El temario GVA muestra los archivos locales completos.
+Las preguntas de práctica son material didáctico, no preguntas oficiales. Los cuestionarios de años anteriores se muestran aparte y corresponden a convocatorias anteriores; conviene contrastar las normas con el programa vigente. El programa oficial de Auxiliar AGE se enlaza desde el BOE. El visor usa los apuntes de los bloques I y II; el tema 26 conserva la ficha de repaso al no haber un archivo completo de Access en BLOQUE II. El archivo TEMA 24 de ese bloque duplica el contenido del tema 23, así que Word y Excel se asocian a sus apuntes por el título interno. Administrativo AGE cuenta con su propia pantalla y reserva la carpeta `OPOSICIONES/ADMIN AGE` para sus recursos. El temario GVA muestra los archivos locales completos.
 
 ## Fuentes de convocatoria
 
 - [Orden 9/2026, convocatoria 70/26, DOGV núm. 10331 (PDF)](https://dogv.gva.es/datos/2026/03/27/pdf/2026_8071_es.pdf)
 - [Ficha oficial de la convocatoria en la Sede GVA](https://sede.gva.es/es/detall-ocupacio-publica?id_emp=110135)
 - [Convocatoria AGE 2025 en el BOE (Anexo I)](https://boe.es/buscar/doc.php?id=BOE-A-2025-26262)
+- [Convocatoria 2026 para Administrativo AGE en el BOE (Anexo III)](https://boe.es/buscar/doc.php?id=BOE-A-2026-24839)
+- [Cuerpo General Administrativo AGE en el INAP](https://www.inap.es/es/seleccion/procesos-selectivos-de-cuerposescalas-generales/cuerpo-general-administrativo-de-la-administracion-del-estado)
 - [GSI AGE · ingreso libre, convocatoria 2025 (INAP)](https://sede.inap.gob.es/es/procedimientos-y-servicios/seleccion/procesos-selectivos-de-cuerpos-y-escalas-generales/cuerpo-de-gestion-de-sistemas-e-informatica-de-la-administracion-del-estado-ingreso-libre-convocatoria-2025)
 - [GSI AGE · ingreso libre, OEP 2021–2024 (INAP)](https://sede.inap.gob.es/es/procedimientos-y-servicios/seleccion/procesos-selectivos-de-cuerpos-y-escalas-generales/cuerpo-de-gestion-de-sistemas-e-informatica-de-la-administracion-del-estado/cgseiae-ingreso-libre-oferta-de-empleo-publico-2021-2024)
 
